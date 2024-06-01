@@ -50,6 +50,7 @@
             " target="_blank">
             <!--<img src="../images/telegram.jpeg" alt="Telegram"></a>-->
             <img src="{{ url_for('static', filename='images/telegram.jpeg') }}" alt="Telegram">
+            </a>
         </div>
     </nav>
     <!-- Cover Photo Section -->
@@ -58,9 +59,12 @@
         <img src="{{ url_for('static', filename='images/first.jpg') }}" alt="Cover Photo 1" class="cover-photo-image active">
         <!--<img src="../images/photo2.jpeg" alt="Cover Photo 2" class="cover-photo-image">-->
         <img src="{{ url_for('static', filename='images/photo2.jpeg') }}" alt="Cover Photo 2" class="cover-photo-image active">
-        <img src="../images/photo3.jpeg" alt="Cover Photo 3" class="cover-photo-image">
-        <img src="../images/cover4.jpeg" alt="Cover Photo 3" class="cover-photo-image">
-        <img src="../images/cover5.jpeg" alt="Cover Photo 3" class="cover-photo-image">
+        <!--<img src="../images/photo3.jpeg" alt="Cover Photo 3" class="cover-photo-image">-->
+        <img src="{{ url_for('static', filename='images/photo3.jpeg') }}" alt="Cover Photo 3" class="cover-photo-image active">
+        <!--<img src="../images/cover4.jpeg" alt="Cover Photo 3" class="cover-photo-image">-->
+        <img src="{{ url_for('static', filename='images/cover4.jpeg') }}" alt="Cover Photo 4" class="cover-photo-image active">
+        <!--<img src="../images/cover5.jpeg" alt="Cover Photo 3" class="cover-photo-image">-->
+        <img src="{{ url_for('static', filename='images/cover5.jpeg') }}" alt="Cover Photo 5" class="cover-photo-image active">
     </div>
 
 
@@ -86,46 +90,72 @@
     <p class="p1">Health Tips</p>
     <section id="health-advice">
         <div class="advice-container">
-            <a href="https://www.unicef.org/kenya/stories/handwashing-recipe-good-health">
+            <!--<a href="https://www.unicef.org/kenya/stories/handwashing-recipe-good-health">
                 <img src="../images/washHands.jpeg" alt="Wash Hands" onclick="window.location.href='https://www.unicef.org/kenya/stories/handwashing-recipe-good-health';">
-            </a>            
-            <p>Wash your hands before eating.</p>
+            </a>         
+            <p>Wash your hands before eating.</p>-->
+            <a href="https://www.unicef.org/kenya/stories/handwashing-recipe-good-health"target="_blank">
+                <img src="{{ url_for('static', filename='images/washHands.jpeg') }}" alt="Wash Hands">
+            </a>
+            <p>Wash your hands before eating.</p>            
         </div>
         <div class="advice-container">
-            <a href="https://www.healthline.com/nutrition/10-benefits-of-exercise">
+           <!-- <a href="https://www.healthline.com/nutrition/10-benefits-of-exercise">
                 <img src="../images/exercise.jpeg" alt="Wash Hands" onclick="window.location.href='https://www.healthline.com/nutrition/10-benefits-of-exercise';">
             </a> 
-            <!--<img src="exercise.jpeg" alt="Exercise">-->
+            <img src="exercise.jpeg" alt="Exercise">
+            <p>Exercise regularly.</p>-->
+            <a href="https://www.healthline.com/nutrition/10-benefits-of-exercise"target="_blank">
+                <img src="{{ url_for('static', filename='images/exercise.jpeg') }}" alt="exercise">
+            </a>
             <p>Exercise regularly.</p>
+            
         </div>
         <div class="advice-container">
-            <a href="https://www.medicalnewstoday.com/articles/324093">
+           <!-- <a href="https://www.medicalnewstoday.com/articles/324093">
                 <img src="../images/eating.jpeg" alt="Wash Hands" onclick="window.location.href='https://www.medicalnewstoday.com/articles/324093';">
             </a> 
-            <!--<img src="eating.jpeg" alt="Healthy Eating">-->
-            <p>Eat a balanced diet.</p>
+            <img src="eating.jpeg" alt="Healthy Eating">
+            <p>Eat a balanced diet.</p>-->
+            <a href="https://www.medicalnewstoday.com/articles/324093"target="_blank">
+                <img src="{{ url_for('static', filename='images/eating.jpeg') }}" alt="healthy eating">
+            </a>
+            <p>Healthy eating.</p>            
         </div>
         <div class="advice-container">
-            <a href="https://www.nanavatimaxhospital.org/blogs/importance-of-regular-health-check-ups">
+            <!--<a href="https://www.nanavatimaxhospital.org/blogs/importance-of-regular-health-check-ups">
                 <img src="../images/checkUp.jpeg" alt="Wash Hands" onclick="window.location.href='https://www.nanavatimaxhospital.org/blogs/importance-of-regular-health-check-ups';">
             </a> 
-            <!--<img src="checkUp.jpeg" alt="Regular Health Check-ups">-->
+            <img src="checkUp.jpeg" alt="Regular Health Check-ups">
+            <p>Regular Health Check-ups.</p>-->
+            <a href="https://www.nanavatimaxhospital.org/blogs/importance-of-regular-health-check-ups"target="_blank">
+                <img src="{{ url_for('static', filename='images/checkUp.jpeg') }}" alt="checkUp">
+            </a>
             <p>Regular Health Check-ups.</p>
+            
         </div>
         <div class="advice-container">
-            <a href="https://newsinhealth.nih.gov/2021/04/good-sleep-good-health">
+            <!--<a href="https://newsinhealth.nih.gov/2021/04/good-sleep-good-health">
                 <img src="../images/adequateSleep.jpeg" alt="Wash Hands" onclick="window.location.href='https://newsinhealth.nih.gov/2021/04/good-sleep-good-health';">
             </a> 
-            <!--<img src="adequateSleep.jpeg" alt="Adequate sleep">-->
-            <p>Adequate sleep.</p>
+            <img src="adequateSleep.jpeg" alt="Adequate sleep">
+            <p>Adequate sleep.</p>-->
+            <a href="https://newsinhealth.nih.gov/2021/04/good-sleep-good-health"target="_blank">
+                <img src="{{ url_for('static', filename='images/adequateSleep.jpeg') }}" alt="adequateSleep">
+            </a>
+            <p>Adequate sleep.</p>            
         </div>
         <div class="advice-container">
-            <a href="https://www.who.int/news-room/fact-sheets/detail/mental-health-strengthening-our-response/?gad_source=1&gclid=Cj0KCQjwjLGyBhCYARIsAPqTz18VVcl7ozGqrFGkDnNJQtfVaVQaL3wnngm2czjPU7pTK1ncN7PaRosaAmodEALw_wcB" target="_blank">
+            <!--<a href="https://www.who.int/news-room/fact-sheets/detail/mental-health-strengthening-our-response/?gad_source=1&gclid=Cj0KCQjwjLGyBhCYARIsAPqTz18VVcl7ozGqrFGkDnNJQtfVaVQaL3wnngm2czjPU7pTK1ncN7PaRosaAmodEALw_wcB" target="_blank">
                 <img src="../images/stress.jpeg" alt="Stress" onclick="window.open('https://www.who.int/news-room/fact-sheets/detail/mental-health-strengthening-our-response/?gad_source=1&gclid=Cj0KCQjwjLGyBhCYARIsAPqTz18VVcl7ozGqrFGkDnNJQtfVaVQaL3wnngm2czjPU7pTK1ncN7PaRosaAmodEALw_wcB', '_blank');">
             </a>
             
-            <!--<img src="stress.jpeg" alt="Stress Management">-->
-            <p>Stress Management.</p>
+            <img src="stress.jpeg" alt="Stress Management">
+            <p>Stress Management.</p>-->
+            <a href="https://www.who.int/news-room/fact-sheets/detail/mental-health-strengthening-our-response/?gad_source=1&gclid=Cj0KCQjwjLGyBhCYARIsAPqTz18VVcl7ozGqrFGkDnNJQtfVaVQaL3wnngm2czjPU7pTK1ncN7PaRosaAmodEALw_wcB"target="_blank">
+                <img src="{{ url_for('static', filename='images/stress.jpeg') }}" alt="Wash Hands">
+            </a>
+            <p>Stress Management.</p>            
         </div>
     </section>
 
@@ -146,11 +176,26 @@
     <section id="partnerships">
         <h3>In Partnership With</h3>
         <div class="partner-logos">
-            <a href="https://www.nhg.com" target="_blank"><img src="../images/nhig.jpeg" alt="NHG"></a>
-            <a href="https://www.nhif.or.ke/" target="_blank"><img src="../images/nhif.jpeg" alt="NHIF"></a>
-            <a href="https://tibu.africa/?gclid=Cj0KCQjw6auyBhDzARIsALIo6v8GK-4eVzgiIPyvM-ui1V4eczVSDjEyLtAvnjTF3jfWp3686WiGhTgaAtxVEALw_wcB" target="_blank"><img src="../images/tibu.jpeg" alt="Partner 3"></a>
-            <a href="https://www.equityafia.co.ke/" target="_blank"><img src="../images/equityAfia.png" alt="Partner 4"></a>
-            <a href="https://www.cfaogroup.com/en/homepage/" target="_blank"><img src="../images/cfao.jpeg" alt="Partner 5"></a>
+           <!-- <a href="https://www.nhg.com" target="_blank"><img src="../images/nhig.jpeg" alt="NHG"></a>-->
+            <a href="https://socialprotection.org/connect/stakeholders/kenya-national-hospital-insurance-fund-nhif" target="_blank">
+                <img src="{{ url_for('static', filename='images/nhig.jpeg') }}" alt="NHG">
+            </a>
+            <!--<a href="https://www.nhif.or.ke/" target="_blank"><img src="../images/nhif.jpeg" alt="NHIF"></a>-->
+            <a href="https://www.nhif.or.ke" target="_blank">
+                <img src="{{ url_for('static', filename='images/nhif.jpeg') }}" alt="NHIF">
+            </a>
+            <!--<a href="https://tibu.africa/?gclid=Cj0KCQjw6auyBhDzARIsALIo6v8GK-4eVzgiIPyvM-ui1V4eczVSDjEyLtAvnjTF3jfWp3686WiGhTgaAtxVEALw_wcB" target="_blank"><img src="../images/tibu.jpeg" alt="Partner 3"></a>-->
+            <a href="https://tibu.africa/?gclid=Cj0KCQjw6auyBhDzARIsALIo6v8GK-4eVzgiIPyvM-ui1V4eczVSDjEyLtAvnjTF3jfWp3686WiGhTgaAtxVEALw_wcB" target="_blank">
+                <img src="{{ url_for('static', filename='images/tibu.jpeg') }}" alt="tibu">
+            </a>
+            <!--<a href="https://www.equityafia.co.ke/" target="_blank"><img src="../images/equityAfia.png" alt="Partner 4"></a>-->
+            <a href="https://www.equityafia.co.ke/" target="_blank">
+                <img src="{{ url_for('static', filename='images/equityAfia.png') }}" alt="equityAfia">
+            </a>
+            <!--<a href="https://www.cfaogroup.com/en/homepage/" target="_blank"><img src="../images/cfao.jpeg" alt="Partner 5"></a>-->
+            <a href="https://www.cfaogroup.com/en/homepage/" target="_blank">
+                <img src="{{ url_for('static', filename='images/cfao.jpeg') }}" alt="cfao">
+            </a>
         </div>
     </section>
 
@@ -170,6 +215,7 @@
         </div>
     </footer>
 
-    <script src="../jsscripts/scripts.js"></script>
+    <!--<script src="../jsscripts/scripts.js"></script>-->
+    <script src="{{ url_for('static', filename='jsscripts/scripts.js') }}"></script>
 </body>
 </html>
