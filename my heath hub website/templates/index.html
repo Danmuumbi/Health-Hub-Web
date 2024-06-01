@@ -15,15 +15,16 @@
             <span>Phone: +254 714202946</span>
         </div>
         <div class="header-right">
-            <img src="../images/myphoto.jpg" alt="Your Photo" class="profile-photo">
+            <!--<img src="../images/myphoto.jpg" alt="Your Photo" class="profile-photo">-->
+            <img src="{{ url_for('static', filename='images/myphoto.jpg') }}" alt="Your Photo" class="profile-photo">
         </div>
     </header>
 
     <!-- Navigation Bar -->
     <nav class="navbar">
         <div class="logo">
-            <img src="../images/health-hub.png" alt="Health Hub Logo">
-            <img src="../images/health-hub.png" alt="Health Hub Logo">
+            <!--<img src="../images/health-hub.png" alt="Health Hub Logo">-->
+            <img src="{{ url_for('static', filename='images/health-hub.png') }}" alt="Health Hub Logo">
 
             <p>Health Hub</p>
         </div>
@@ -38,18 +39,25 @@
 
         </div>
         <div class="social-media">
-            <a href="https://twitter.com/PeaceMuumbi" target="_blank"><img src="../images/twitter.png" alt="Twitter"></a>
+            <a href="https://twitter.com/PeaceMuumbi" target="_blank">
+                <!--<img src="../images/twitter.png" alt="Twitter"></a>-->
+                <img src="{{ url_for('static', filename='images/twitter.png') }}" alt="twitter">
             <a href="https://wa.me/254762254616?text=Hello%2C%20I%20am%20interested%20in%20your%20services%21" target="_blank">
-                <img src="../images/whatssap.png" alt="WhatsApp">
+                <!--<img src="../images/whatssap.png" alt="WhatsApp">-->
+                <img src="{{ url_for('static', filename='images/whatssap.png') }}" alt="WhatsApp">
             </a>            
             <a href="https://t.me/addcontact?phone=+254714202946
-            " target="_blank"><img src="../images/telegram.jpeg" alt="Telegram"></a>
+            " target="_blank">
+            <!--<img src="../images/telegram.jpeg" alt="Telegram"></a>-->
+            <img src="{{ url_for('static', filename='images/telegram.jpeg') }}" alt="Telegram">
         </div>
     </nav>
     <!-- Cover Photo Section -->
     <div class="cover-photo">
-        <img src="../images/first.jpg" alt="Cover Photo 1" class="cover-photo-image active">
-        <img src="../images/photo2.jpeg" alt="Cover Photo 2" class="cover-photo-image">
+        <!--<img src="../images/first.jpg" alt="Cover Photo 1" class="cover-photo-image active">-->
+        <img src="{{ url_for('static', filename='images/first.jpg') }}" alt="Cover Photo 1" class="cover-photo-image active">
+        <!--<img src="../images/photo2.jpeg" alt="Cover Photo 2" class="cover-photo-image">-->
+        <img src="{{ url_for('static', filename='images/photo2.jpeg') }}" alt="Cover Photo 2" class="cover-photo-image active">
         <img src="../images/photo3.jpeg" alt="Cover Photo 3" class="cover-photo-image">
         <img src="../images/cover4.jpeg" alt="Cover Photo 3" class="cover-photo-image">
         <img src="../images/cover5.jpeg" alt="Cover Photo 3" class="cover-photo-image">
