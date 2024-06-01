@@ -1,27 +1,32 @@
-{% extends "layout.html" %}
-{% block title %}Register{% endblock %}
-{% block content %}
-    <h2>Register</h2>
+<!-- templates/register.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+</head>
+<body>
+    <h1>Register</h1>
     <form method="POST" action="{{ url_for('register') }}">
         {{ form.hidden_tag() }}
-        <div>
+        <p>
             {{ form.username.label }}<br>
             {{ form.username(size=32) }}
-        </div>
-        <div>
+        </p>
+        <p>
             {{ form.email.label }}<br>
             {{ form.email(size=32) }}
-        </div>
-        <div>
+        </p>
+        <p>
             {{ form.password.label }}<br>
             {{ form.password(size=32) }}
-        </div>
-        <div>
+        </p>
+        <p>
             {{ form.confirm_password.label }}<br>
             {{ form.confirm_password(size=32) }}
-        </div>
-        <div>
-            {{ form.submit() }}
-        </div>
+        </p>
+        <p>{{ form.submit() }}</p>
     </form>
-{% endblock %}
+</body>
+</html>
