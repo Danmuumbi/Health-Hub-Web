@@ -74,8 +74,8 @@ def logout():
     return redirect(url_for('home'))
 
 if __name__ == '__main__':
-    app.run(debug=True)
-"""
+    app.run(debug=True)"""
+
 
 from flask import Flask, render_template, redirect, url_for, flash
 from flask_sqlalchemy import SQLAlchemy
@@ -117,17 +117,6 @@ class LoginForm(FlaskForm):
     email = StringField('Email', validators=[DataRequired(), Email()])
     password = PasswordField('Password', validators=[DataRequired()])
     submit = SubmitField('Login')
-    from views.auth_views import auth_bp
-from views.doctor_views import doctor_bp
-from views.user_views import patient_bp
-from views.service_views import services_bp
-from views.views import appointments_bp
-
-app.register_blueprint(auth_bp, url_prefix='/auth')
-app.register_blueprint(doctor_bp, url_prefix='/doctor')
-app.register_blueprint(patient_bp, url_prefix='/patient')
-app.register_blueprint(services_bp, url_prefix='/services')
-app.register_blueprint(appointments_bp, url_prefix='/appointments')
 
 @app.route("/")
 @app.route("/home")
@@ -143,7 +132,7 @@ def register():
         db.session.add(user)
         db.session.commit()
         flash('Your account has been created!', 'success')
-        return redirect(url_for('login'))  # Using url_for for the redirect
+        return redirect(url_for('login'))
     return render_template('register.html', title='Register', form=form)
 
 @app.route("/login", methods=['GET', 'POST'])
@@ -153,7 +142,7 @@ def login():
         user = User.query.filter_by(email=form.email.data).first()
         if user and bcrypt.check_password_hash(user.password, form.password.data):
             login_user(user)
-            return redirect(url_for('home'))  # Using url_for for the redirect
+            return redirect(url_for('home'))
         else:
             flash('Login Unsuccessful. Please check email and password', 'danger')
     return render_template('login.html', title='Login', form=form)
@@ -161,7 +150,7 @@ def login():
 @app.route("/logout")
 def logout():
     logout_user()
-    return redirect(url_for('home'))  # Using url_for for the redirect
+    return redirect(url_for('home'))
 
 if __name__ == '__main__':
     app.run(debug=True)
