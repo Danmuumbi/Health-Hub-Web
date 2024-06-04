@@ -1,43 +1,3 @@
-<!--<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
-</head>
-<body>
-    <h1>Welcome, {{ user.username }}!</h1>
-    
-    <h2>Your Information:</h2>
-    <ul>
-        <li>Email: {{ user.email }}</li>
-        <li>Date of Birth: {{ user.date_of_birth }}</li>
-        <li>Gender: {{ user.gender }}</li>
-        <li>Address: {{ user.address }}</li>
-        <li>Phone Number: {{ user.phone_number }}</li>
-    </ul>
-    
-    {% if user.profile_picture %}
-        <h2>Profile Picture:</h2>
-        <img src="data:image/jpeg;base64,{{ user.profile_picture.decode('utf-8') }}" alt="Profile Picture">
-    {% endif %}
-    
-    <h2>Medical Records:</h2>
-    <ul>
-        {% for record in medical_records %}
-            <li>Medical History: {{ record.medical_history }}</li>
-            <li>Medications: {{ record.medications }}</li>
-            <li>Vaccination Record: {{ record.vaccination_record }}</li>
-            <li>Lab Results: {{ record.lab_results }}</li>
-            <li>Allergies: {{ record.allergies }}</li>
-            <li>Immunizations: {{ record.immunizations }}</li>
-        {% endfor %}
-    </ul>
-    
-    <a href="{{ url_for('logout') }}">Logout</a>
-</body>
-</html>-->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -51,7 +11,31 @@
     <p>Gender: {{ user.gender }}</p>
     <p>Address: {{ user.address }}</p>
     <p>Phone Number: {{ user.phone_number }}</p>
+
+    <h2>Medical Records</h2>
+    <ul>
+        {% for record in medical_records %}
+            <li>{{ record.medical_history }} - {{ record.medications }} - {{ record.vaccination_record }} - {{ record.lab_results }} - {{ record.allergies }} - {{ record.immunizations }}</li>
+        {% endfor %}
+    </ul>
+    <a href="{{ url_for('add_medical_record') }}">Add Medical Record</a>
+
+    <h2>Appointments</h2>
+    <ul>
+        {% for appointment in appointments %}
+            <li>{{ appointment.service_type }} - {{ appointment.date_time }} - {{ appointment.status }}</li>
+        {% endfor %}
+    </ul>
+    <a href="{{ url_for('add_appointment') }}">Book Appointment</a>
+
+    <h2>Payments</h2>
+    <ul>
+        {% for payment in payments %}
+            <li>{{ payment.payment_info }}</li>
+        {% endfor %}
+    </ul>
+    <a href="{{ url_for('add_payment') }}">Make Payment</a>
+
     <a href="{{ url_for('logout') }}">Logout</a>
 </body>
 </html>
-

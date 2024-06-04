@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>New Appointment</title>
+</head>
+<body>
+    <h1>Book New Appointment</h1>
+    <form action="{{ url_for('add_appointment') }}" method="POST">
+        {{ form.hidden_tag() }}
+        <label for="service_type">Service Type:</label>
+        {{ form.service_type() }}
+        <label for="date_time">Date and Time:</label>
+        {{ form.date_time() }}
+        <label for="status">Status:</label>
+        {{ form.status() }}
+        {{ form.submit() }}
+    </form>
+</body>
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>New Medical Record</title>
+</head>
+<body>
+    <h1>Add New Medical Record</h1>
+    <form action="{{ url_for('add_medical_record') }}" method="POST">
+        <label for="medical_history">Medical History:</label>
+        <textarea name="medical_history" required></textarea>
+        <label for="medications">Medications:</label>
+        <textarea name="medications" required></textarea>
+        <label for="vaccination_record">Vaccination Record:</label>
+        <textarea name="vaccination_record" required></textarea>
+        <label for="lab_results">Lab Results:</label>
+        <textarea name="lab_results" required></textarea>
+        <label for="allergies">Allergies:</label>
+        <textarea name="allergies" required></textarea>
+        <label for="immunizations">Immunizations:</label>
+        <textarea name="immunizations" required></textarea>
+        <button type="submit">Add Record</button>
+    </form>
+</body>
+</html>

@@ -49,7 +49,7 @@ class FileStorage:
 import json
 from models.base_model import BaseModel
 from models.patient import Patient
-from models.doctor import Doctor
+#from models.doctor import Doctor
 from models.appointment import Appointment
 from models.medication import Medication
 
@@ -100,7 +100,7 @@ class FileStorage:
         return {
             'BaseModel': BaseModel,
             'Patient': Patient,
-            'Doctor': Doctor,
+            #'Doctor': Doctor,
             'Appointment': Appointment,
             'Medication': Medication,
         }
