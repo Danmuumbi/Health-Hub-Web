@@ -2,7 +2,7 @@ import cmd
 import sys
 from models import storage
 from models.patient import Patient
-from models.doctor import Doctor
+#from models.doctor import Doctor
 from models.appointment import Appointment
 from models.medication import Medication
 

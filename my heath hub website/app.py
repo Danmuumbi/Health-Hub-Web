@@ -1,27 +1,22 @@
 """from flask import Flask, render_template, redirect, url_for, flash
 from flask_sqlalchemy import SQLAlchemy
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, SubmitField
+from wtforms import StringField, PasswordField, SubmitField, DateField, SelectField
 from wtforms.validators import DataRequired, Email, EqualTo
 from flask_bcrypt import Bcrypt
 from flask_login import LoginManager, UserMixin, login_user, current_user, logout_user, login_required
+from flask_migrate import Migrate
+from config import Config
+from models import db, User
 
 app = Flask(__name__)
-app.config['SECRET_KEY'] = 'your_secret_key'
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///site.db'
-db = SQLAlchemy(app)
+app.config.from_object(Config)
+
+db.init_app(app)
 bcrypt = Bcrypt(app)
 login_manager = LoginManager(app)
 login_manager.login_view = 'login'
-
-class User(db.Model, UserMixin):
-    id = db.Column(db.Integer, primary_key=True)
-    username = db.Column(db.String(20), unique=True, nullable=False)
-    email = db.Column(db.String(120), unique=True, nullable=False)
-    password = db.Column(db.String(60), nullable=False)
-
-    def __repr__(self):
-        return f"User('{self.username}', '{self.email}')"
+migrate = Migrate(app, db)
 
 @login_manager.user_loader
 def load_user(user_id):
@@ -32,6 +27,10 @@ class RegistrationForm(FlaskForm):
     email = StringField('Email', validators=[DataRequired(), Email()])
     password = PasswordField('Password', validators=[DataRequired()])
     confirm_password = PasswordField('Confirm Password', validators=[DataRequired(), EqualTo('password')])
+    date_of_birth = DateField('Date of Birth', format='%Y-%m-%d', validators=[DataRequired()])
+    gender = SelectField('Gender', choices=[('M', 'Male'), ('F', 'Female'), ('O', 'Other')])
+    address = StringField('Address')
+    phone_number = StringField('Phone Number')
     submit = SubmitField('Sign Up')
 
 class LoginForm(FlaskForm):
@@ -49,11 +48,18 @@ def register():
     form = RegistrationForm()
     if form.validate_on_submit():
         hashed_password = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
-        user = User(username=form.username.data, email=form.email.data, password=hashed_password)
-        db.session.add(user)
-        db.session.commit()
-        flash('Your account has been created!', 'success')
-        return redirect(url_for('login'))
+        try:
+            user = User(username=form.username.data, email=form.email.data, password=hashed_password,
+                        date_of_birth=form.date_of_birth.data, gender=form.gender.data,
+                        address=form.address.data, phone_number=form.phone_number.data)
+            db.session.add(user)
+            db.session.commit()
+            flash('Your account has been created!', 'success')
+            login_user(user)
+            return redirect(url_for('dashboard'))
+        except Exception as e:
+            db.session.rollback()
+            flash(f'An error occurred: {e}', 'danger')
     return render_template('register.html', title='Register', form=form)
 
 @app.route("/login", methods=['GET', 'POST'])
@@ -63,7 +69,7 @@ def login():
         user = User.query.filter_by(email=form.email.data).first()
         if user and bcrypt.check_password_hash(user.password, form.password.data):
             login_user(user)
-            return redirect(url_for('home'))
+            return redirect(url_for('dashboard'))
         else:
             flash('Login Unsuccessful. Please check email and password', 'danger')
     return render_template('login.html', title='Login', form=form)
@@ -72,35 +78,49 @@ def login():
 def logout():
     logout_user()
     return redirect(url_for('home'))
+
+@app.route("/dashboard")
+@login_required
+def dashboard():
+    return render_template('dashboard.html', user=current_user)
+
+@app.route("/about")
+def about():
+    return render_template('about.html', title='About Us')
+
+@app.route("/services")
+def services():
+    return render_template('services.html', title='Our Services')
+
+@app.route("/contact")
+def contact():
+    return render_template('contact.html', title='Contact Us')
 
 if __name__ == '__main__':
-    app.run(debug=True)"""
-
-
-from flask import Flask, render_template, redirect, url_for, flash
+    app.run(debug=True)
+"""
+from flask import Flask, render_template, redirect, url_for, flash, request
 from flask_sqlalchemy import SQLAlchemy
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, SubmitField
+from wtforms import StringField, PasswordField, SubmitField, DateField, SelectField
 from wtforms.validators import DataRequired, Email, EqualTo
 from flask_bcrypt import Bcrypt
 from flask_login import LoginManager, UserMixin, login_user, current_user, logout_user, login_required
+from flask_migrate import Migrate
+from config import Config
+from models import db, User, MedicalRecord, Appointment, Department, Payment
+import logging
 
 app = Flask(__name__)
-app.config['SECRET_KEY'] = 'your_secret_key'
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///site.db'
-db = SQLAlchemy(app)
+app.config.from_object(Config)
+
+db.init_app(app)
 bcrypt = Bcrypt(app)
 login_manager = LoginManager(app)
 login_manager.login_view = 'login'
+migrate = Migrate(app, db)
 
-class User(db.Model, UserMixin):
-    id = db.Column(db.Integer, primary_key=True)
-    username = db.Column(db.String(20), unique=True, nullable=False)
-    email = db.Column(db.String(120), unique=True, nullable=False)
-    password = db.Column(db.String(60), nullable=False)
-
-    def __repr__(self):
-        return f"User('{self.username}', '{self.email}')"
+logging.basicConfig(level=logging.DEBUG)
 
 @login_manager.user_loader
 def load_user(user_id):
@@ -111,6 +131,10 @@ class RegistrationForm(FlaskForm):
     email = StringField('Email', validators=[DataRequired(), Email()])
     password = PasswordField('Password', validators=[DataRequired()])
     confirm_password = PasswordField('Confirm Password', validators=[DataRequired(), EqualTo('password')])
+    date_of_birth = DateField('Date of Birth', format='%Y-%m-%d', validators=[DataRequired()])
+    gender = SelectField('Gender', choices=[('M', 'Male'), ('F', 'Female'), ('O', 'Other')])
+    address = StringField('Address')
+    phone_number = StringField('Phone Number')
     submit = SubmitField('Sign Up')
 
 class LoginForm(FlaskForm):
@@ -127,30 +151,58 @@ def home():
 def register():
     form = RegistrationForm()
     if form.validate_on_submit():
+        logging.debug("Form validation successful.")
         hashed_password = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
-        user = User(username=form.username.data, email=form.email.data, password=hashed_password)
+        user = User(username=form.username.data, email=form.email.data, password=hashed_password,
+                    date_of_birth=form.date_of_birth.data, gender=form.gender.data,
+                    address=form.address.data, phone_number=form.phone_number.data)
         db.session.add(user)
         db.session.commit()
         flash('Your account has been created!', 'success')
-        return redirect(url_for('login'))
+        login_user(user)
+        return redirect(url_for('dashboard'))
+    else:
+        logging.debug("Form validation failed.")
+        logging.debug(form.errors)
     return render_template('register.html', title='Register', form=form)
 
 @app.route("/login", methods=['GET', 'POST'])
 def login():
     form = LoginForm()
     if form.validate_on_submit():
+        logging.debug("Login form validation successful.")
         user = User.query.filter_by(email=form.email.data).first()
         if user and bcrypt.check_password_hash(user.password, form.password.data):
             login_user(user)
-            return redirect(url_for('home'))
+            return redirect(url_for('dashboard'))
         else:
             flash('Login Unsuccessful. Please check email and password', 'danger')
+    else:
+        logging.debug("Login form validation failed.")
+        logging.debug(form.errors)
     return render_template('login.html', title='Login', form=form)
 
 @app.route("/logout")
 def logout():
     logout_user()
     return redirect(url_for('home'))
+
+@app.route("/dashboard")
+@login_required
+def dashboard():
+    return render_template('dashboard.html', user=current_user)
+
+@app.route("/about")
+def about():
+    return render_template('about.html', title='About Us')
+
+@app.route("/services")
+def services():
+    return render_template('services.html', title='Our Services')
+
+@app.route("/contact")
+def contact():
+    return render_template('contact.html', title='Contact Us')
 
 if __name__ == '__main__':
     app.run(debug=True)

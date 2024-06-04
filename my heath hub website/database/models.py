@@ -1,59 +1,47 @@
-# models.py
+from app import db
 from datetime import datetime
-from flask_sqlalchemy import SQLAlchemy
-from flask_bcrypt import Bcrypt
-
-db = SQLAlchemy()
-bcrypt = Bcrypt()
 
 class User(db.Model):
-    __tablename__ = 'users'
-    id = db.Column(db.Integer, primary_key=True)
-    username = db.Column(db.String(150), unique=True, nullable=False)
-    email = db.Column(db.String(150), unique=True, nullable=False)
-    password_hash = db.Column(db.String(128), nullable=False)
-    created_at = db.Column(db.DateTime, default=datetime.utcnow)
+    __tablename__ = 'Users'
+    user_id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    username = db.Column(db.String(50), nullable=False)
+    email = db.Column(db.String(100), nullable=False, unique=True)
+    password = db.Column(db.String(255), nullable=False)
+    date_of_birth = db.Column(db.Date, nullable=False)
+    gender = db.Column(db.String(1), nullable=False)
+    address = db.Column(db.String(255))
+    phone_number = db.Column(db.String(15))
+    profile_picture = db.Column(db.LargeBinary)
 
-    def set_password(self, password):
-        self.password_hash = bcrypt.generate_password_hash(password).decode('utf-8')
+class MedicalRecord(db.Model):
+    __tablename__ = 'Medical_Records'
+    record_id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    user_id = db.Column(db.Integer, db.ForeignKey('Users.user_id'), nullable=False)
+    medical_history = db.Column(db.Text)
+    medications = db.Column(db.Text)
+    vaccination_record = db.Column(db.Text)
+    lab_results = db.Column(db.Text)
+    allergies = db.Column(db.Text)
+    immunizations = db.Column(db.Text)
 
-    def check_password(self, password):
-        return bcrypt.check_password_hash(self.password_hash, password)
+class Appointment(db.Model):
+    __tablename__ = 'Appointments'
+    appointment_id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    patient_id = db.Column(db.Integer, db.ForeignKey('Users.user_id'), nullable=False)
+    doctor_id = db.Column(db.Integer, db.ForeignKey('Users.user_id'), nullable=False)
+    service_type = db.Column(db.String(100))
+    date_time = db.Column(db.DateTime, nullable=False)
+    status = db.Column(db.String(50))
 
-class Article(db.Model):
-    __tablename__ = 'articles'
-    id = db.Column(db.Integer, primary_key=True)
-    title = db.Column(db.String(200), nullable=False)
-    content = db.Column(db.Text, nullable=False)
-    author_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
-    created_at = db.Column(db.DateTime, default=datetime.utcnow)
+class Department(db.Model):
+    __tablename__ = 'Departments'
+    department_id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    department_name = db.Column(db.String(100), nullable=False)
+    location = db.Column(db.String(255))
+    contact_info = db.Column(db.String(255))
 
-    author = db.relationship('User', backref=db.backref('articles', lazy=True))
-
-class HealthTip(db.Model):
-    __tablename__ = 'health_tips'
-    id = db.Column(db.Integer, primary_key=True)
-    title = db.Column(db.String(200), nullable=False)
-    content = db.Column(db.Text, nullable=False)
-    created_at = db.Column(db.DateTime, default=datetime.utcnow)
-
-class Question(db.Model):
-    __tablename__ = 'questions'
-    id = db.Column(db.Integer, primary_key=True)
-    title = db.Column(db.String(200), nullable=False)
-    content = db.Column(db.Text, nullable=False)
-    user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
-    created_at = db.Column(db.DateTime, default=datetime.utcnow)
-
-    user = db.relationship('User', backref=db.backref('questions', lazy=True))
-
-class Answer(db.Model):
-    __tablename__ = 'answers'
-    id = db.Column(db.Integer, primary_key=True)
-    content = db.Column(db.Text, nullable=False)
-    question_id = db.Column(db.Integer, db.ForeignKey('questions.id'), nullable=False)
-    user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
-    created_at = db.Column(db.DateTime, default=datetime.utcnow)
-
-    question = db.relationship('Question', backref=db.backref('answers', lazy=True))
-    user = db.relationship('User', backref=db.backref('answers', lazy=True))
+class Payment(db.Model):
+    __tablename__ = 'Payments'
+    payment_id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    user_id = db.Column(db.Integer, db.ForeignKey('Users.user_id'), nullable=False)
+    payment_info = db.Column(db.Text)

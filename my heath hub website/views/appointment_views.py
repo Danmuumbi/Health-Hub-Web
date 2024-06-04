@@ -16,3 +16,5 @@ def view():
 def cancel():
     # Handle appointment cancellation logic here
     return render_template('cancel_appointment.html')
+
+

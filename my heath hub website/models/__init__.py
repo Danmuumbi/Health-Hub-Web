@@ -1,39 +1,9 @@
-"""from models.base_model import BaseModel
-from models.patient import Patient
-from models.doctor import Doctor
-from models.appointment import Appointment
-from models.medication import Medication
+from flask_sqlalchemy import SQLAlchemy
 
-classes = {
-    'BaseModel': BaseModel,
-    'Patient': Patient,
-    'Doctor': Doctor,
-    'Appointment': Appointment,
-    'Medication': Medication,
-}
+db = SQLAlchemy()
 
-def initialize_storage():
-    from models.engine.file_storage import FileStorage
-    return FileStorage()
-
-storage = initialize_storage()
-storage.reload() """
-from models.base_model import BaseModel
-from models.patient import Patient
-from models.doctor import Doctor
-from models.appointment import Appointment
-from models.medication import Medication
-from models.engine.file_storage import FileStorage
-
-classes = {
-    'BaseModel': BaseModel,
-    'Patient': Patient,
-    'Doctor': Doctor,
-    'Appointment': Appointment,
-    'Medication': Medication,
-}
-
-storage = FileStorage()  # Initialize storage engine directly here
-storage.reload()
-
-
+from .user import User
+from .medical_record import MedicalRecord
+from .appointment import Appointment
+from .department import Department
+from .payment import Payment

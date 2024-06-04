@@ -40,7 +40,8 @@ document.addEventListener("DOMContentLoaded", function() {
         console.log('Adding click event to image:', index);
         image.addEventListener('click', () => {
             console.log('Image clicked:', index);
-            window.location.href = 'news.html';
+            //window.location.href = "{{ url_for('news') }}";
+            window.location.href = "../templates/news.html";
         });
     });
 });
