@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update Information</title>
+    <link rel="stylesheet" href="styles.css"> <!-- Link your CSS file here -->
+</head>
+<body>
+    <header>
+        <h1>Update Information</h1>
+        <!-- Add any header content here -->
+    </header>
+
+    <div class="content">
+        <!-- Add your update form or content here -->
+        <form action="{{ url_for('update_info') }}" method="POST">
+            <!-- Your form fields go here -->
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name"><br><br>
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email"><br><br>
+
+            <!-- Add more fields as needed -->
+
+            <input type="submit" value="Update">
+        </form>
+    </div>
+
+    <footer>
+        <!-- Add footer content here -->
+        &copy; 2024 Health Hub. All rights reserved.
+    </footer>
+</body>
+</html>

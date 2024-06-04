@@ -1,0 +1,402 @@
+/*body {
+    background-image: url('your-background-image.jpg');
+    background-size: cover;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    color: #333;
+}
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: linear-gradient(to right, red 5cm, darkblue 5cm);
+    padding: 10px 20px;
+    color: white;
+}
+.user-info {
+    display: flex;
+    align-items: center;
+    background-color: red;
+    border-radius: 25px;
+    padding: 5px 10px;
+}
+.user-info img, .user-info .placeholder {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: green;
+    margin-right: 10px;
+}
+.user-info .placeholder {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: bold;
+}
+.news-bar {
+    width: 80%;
+    margin: 20px auto;
+    background: lightgray;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    position: relative;
+}
+.news-bar::before, .news-bar::after {
+    content: '';
+    border-style: solid;
+    position: absolute;
+    top: 0;
+    width: 0;
+    height: 0;
+}
+.news-bar::before {
+    border-width: 20px 20px 0 0;
+    border-color: lightgray transparent transparent transparent;
+    left: -20px;
+}
+.news-bar::after {
+    border-width: 0 0 20px 20px;
+    border-color: transparent transparent lightgray transparent;
+    right: -20px;
+}
+.news-bar .news {
+    display: flex;
+    align-items: center;
+}
+.news-bar .news img {
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+    animation: twinkle 1s infinite;
+}
+@keyframes twinkle {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+}
+.boxes {
+    display: flex;
+    justify-content: space-around;
+    margin: 20px 0;
+}
+.box {
+    flex: 1;
+    margin: 0 10px;
+    padding: 20px;
+    border-radius: 10px;
+    color: white;
+}
+.box h3 {
+    margin-top: 0;
+}
+.box-appointments { background-color: blue; }
+.box-attended { background-color: red; }
+.box-payments { background-color: bronze; position: relative; }
+.box-payments .inner-box {
+    background-color: red;
+    border-radius: 10px;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+.box-payments .make-payment {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: green;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.medical-records {
+    background-color: darkblue;
+    color: white;
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+    margin: 20px auto;
+    width: 80%;
+}
+.medical-records .inner-box {
+    background-color: red;
+    border-radius: 10px;
+    padding: 10px;
+    margin: 10px 0;
+}
+.info-section {
+    display: flex;
+    justify-content: space-around;
+    margin: 20px 0;
+}
+.info-box {
+    flex: 1;
+    background-color: lightgray;
+    border-radius: 10px;
+    padding: 20px;
+    margin: 0 10px;
+}
+.info-box .header {
+    background-color: lightgreen;
+    border-radius: 10px;
+    padding: 10px;
+    text-align: center;
+}
+.info-box .content {
+    padding: 10px;
+}
+.info-box .content img, .info-box .content .placeholder {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: lightgreen;
+    display: block;
+    margin: 0 auto;
+}
+.info-box .content .placeholder {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: bold;
+}
+.info-box .content p {
+    text-align: center;
+}
+.info-box .content .line {
+    height: 1px;
+    background-color: gray;
+    margin: 5px 0;
+}
+.info-box .update-btn {
+    display: block;
+    background-color: red;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    text-align: center;
+    cursor: pointer;
+    margin: 20px auto 0;
+}
+.centered-links {
+    text-align: center;
+    margin: 20px 0;
+}
+.centered-links a {
+    display: inline-block;
+    background-color: darkblue;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    margin: 0 10px;
+    text-decoration: none;
+}
+footer {
+    background-color: darkblue;
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+    margin-top: 20px;
+}*/
+body {
+    background-image: url('your-background-image.jpg');
+    background-size: cover;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    color: #333;
+}
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: linear-gradient(to right, red 5cm, darkblue 5cm);
+    padding: 10px 20px;
+    color: white;
+}
+.user-info {
+    display: flex;
+    align-items: center;
+    background-color: red;
+    border-radius: 25px;
+    padding: 5px 10px;
+}
+.user-info img, .user-info .placeholder {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: green;
+    margin-right: 10px;
+}
+.user-info .placeholder {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: bold;
+}
+.news-bar {
+    width: 80%;
+    margin: 20px auto;
+    background: lightgray;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    position: relative;
+}
+.news-bar::before, .news-bar::after {
+    content: '';
+    border-style: solid;
+    position: absolute;
+    top: 0;
+    width: 0;
+    height: 0;
+}
+.news-bar::before {
+    border-width: 20px 20px 0 0;
+    border-color: lightgray transparent transparent transparent;
+    left: -20px;
+}
+.news-bar::after {
+    border-width: 0 0 20px 20px;
+    border-color: transparent transparent lightgray transparent;
+    right: -20px;
+}
+.news-bar .news {
+    display: flex;
+    align-items: center;
+}
+.news-bar .news img {
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+    animation: twinkle 1s infinite;
+}
+@keyframes twinkle {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+}
+.boxes {
+    display: flex;
+    justify-content: space-around;
+    margin: 20px 0;
+}
+.box {
+    flex: 1;
+    margin: 0 10px;
+    padding: 20px;
+    border-radius: 10px;
+    color: white;
+}
+.box h3 {
+    margin-top: 0;
+}
+.box-appointments { background-color: blue; }
+.box-attended { background-color: red; }
+.box-payments { background-color: bronze; position: relative; }
+.box-payments .inner-box {
+    background-color: red;
+    border-radius: 10px;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+.box-payments .make-payment {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: green;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.medical-records {
+    background-color: darkblue;
+    color: white;
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+    margin: 20px auto;
+    width: 80%;
+}
+.medical-records .inner-box {
+    background-color: red;
+    border-radius: 10px;
+    padding: 10px;
+    margin: 10px 0;
+}
+.info-section {
+    display: flex;
+    justify-content: space-around;
+    margin: 20px 0;
+}
+.info-box {
+    flex: 1;
+    background-color: lightgray;
+    border-radius: 10px;
+    padding: 20px;
+    margin: 0 10px;
+}
+.info-box .header {
+    background-color: lightgreen;
+    border-radius: 10px;
+    padding: 10px;
+    text-align: center;
+}
+.info-box .content {
+    padding: 10px;
+}
+.info-box .content img, .info-box .content .placeholder {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background-color: lightgreen;
+    margin-right: 10px;
+    display: inline-block;
+}
+.info-box .content .line {
+    border-bottom: 1px solid #ccc;
+    margin: 10px 0;
+}
+.update-btn {
+    display: block;
+    background-color: red;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    text-align: center;
+    cursor: pointer;
+    margin: 20px auto 0;
+}
+.centered-links {
+    text-align: center;
+    margin: 20px 0;
+}
+.centered-links a {
+    display: inline-block;
+    background-color: darkblue;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    margin: 0 10px;
+    text-decoration: none;
+}
+footer {
+    background-color: darkblue;
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+    margin-top: 20px;
+}
+

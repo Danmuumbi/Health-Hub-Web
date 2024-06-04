@@ -176,6 +176,16 @@ def services():
 @app.route("/contact")
 def contact():
     return render_template('contact.html', title='Contact Us')
+@app.route('/news')
+def news_page():
+    # Your view function logic here
+    return render_template('news.html')
+@app.route('/update_info')
+def update_info():
+    # Your view function logic here
+    return render_template('update_info.html')
+
+
 
 if __name__ == '__main__':
     app.run(debug=True)

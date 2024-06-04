@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!--<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -37,5 +37,120 @@
     <a href="{{ url_for('add_payment') }}">Make Payment</a>
 
     <a href="{{ url_for('logout') }}">Logout</a>
+</body>
+</html>-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard</title>
+    <!--<link rel="stylesheet" href="styles.css">-->
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/dashboard.css') }}">
+</head>
+<body>
+    <header>
+        <div>HEALTH HUB PORTAL</div>
+        <div class="user-info" onclick="confirmLogout()">
+            {% if user.photo %}
+                <img src="{{ user.photo }}" alt="User Photo">
+            {% else %}
+                <div class="placeholder">{{ user.username[0] }}</div>
+            {% endif %}
+            <span>Welcome, {{ user.username }}</span>
+        </div>
+    </header>
+
+    <div class="news-bar">
+        <!--<div class="news" onclick="navigateTo('{{ url_for('news_page') }}')">-->
+            <img src="star.png" alt="News Icon">
+            <span>News</span>
+        </div>
+    </div>
+
+    <div class="boxes">
+        <div class="box box-appointments">
+            <h3>Appointments</h3>
+            <p>{{ appointments|length }}</p>
+            <ul>
+                {% for appointment in appointments %}
+                    <li>{{ appointment.date_time }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div class="box box-attended">
+            <h3>Attended Appointments</h3>
+            <p>{{ attended_appointments|length }}</p>
+            <p>Total Price: {{ total_price }}</p>
+        </div>
+        <div class="box box-payments">
+            <h3>Payments</h3>
+            <div class="inner-box">
+                <p>Total Billed: {{ total_billed }}</p>
+                <p>Total Paid: {{ total_paid }}</p>
+                <p>Balance: {{ balance }}</p>
+            </div>
+            <hr>
+            <!--<button class="make-payment" onclick="navigateTo('{{ url_for('add_payment') }}')">Make Payment</button>
+            <button class="make-payment" onclick='navigateTo({{ url_for("add_payment")|tojson|safe }})'>Make Payment</button>-->
+        </div>
+    </div>
+
+    <div class="medical-records">
+        <h3>Medical Records</h3>
+        <div class="inner-box">
+            <p>Medical History: {{ medical_records.medical_history }}</p>
+            <p>Immunizations: {{ medical_records.immunizations }}</p>
+            <p>Vaccination Record: {{ medical_records.vaccination_record }}</p>
+        </div>
+        <div class="inner-box">
+            <p>Medications: {{ medical_records.medications }}</p>
+            <p>Lab Results: {{ medical_records.lab_results }}</p>
+            <p>Allergies: {{ medical_records.allergies }}</p>
+        </div>
+    </div>
+
+    <div class="info-section">
+        <div class="info-box">
+            <div class="header">Basic Information</div>
+            <div class="content">
+                {% if user.photo %}
+                    <img src="{{ user.photo }}" alt="User Photo">
+                {% else %}
+                    <div class="placeholder">{{ user.username[0] }}</div>
+                {% endif %}
+                <p>Name: {{ user.name }}</p>
+                <div class="line"></div>
+                <p>Gender: {{ user.gender }}</p>
+                <div class="line"></div>
+                <p>ID Number: {{ user.id_number }}</p>
+                <div class="line"></div>
+                <p>Date of Birth: {{ user.date_of_birth }}</p>
+            </div>
+            <!--<button class="update-btn" onclick="navigateTo('{{ url_for('update_info') }}')">Update Information</button>-->
+        </div>
+        <div class="info-box">
+            <div class="header">Contact Information</div>
+            <div class="content">
+                <p>Phone Number: {{ user.phone_number }}</p>
+                <div class="line"></div>
+                <p>Email Address: {{ user.email }}</p>
+                <div class="line"></div>
+                <p>Address: {{ user.address }}</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="centered-links">
+        <a href="{{ url_for('add_appointment') }}">Book Appointment</a>
+        <a href="{{ url_for('add_payment') }}">Make Payment</a>
+    </div>
+
+    <footer>
+        &copy; 2024 health-hub. All rights reserved | Design by Daniel Muumbi.
+    </footer>
+
+   <!--<script src="scripts.js"></script>-->
+   <script src="{{ url_for('static', filename='jsscripts/dashboard.js') }}"></script>
 </body>
 </html>
