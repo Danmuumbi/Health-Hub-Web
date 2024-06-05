@@ -1,0 +1,149 @@
+/*body {
+    font-family: Arial, sans-serif;
+    background:#f4f4f4;
+    margin: 0;
+    padding: 0;
+}
+
+.main-header {
+    background: darkblue;
+    color: white;
+    padding: 20px;
+    text-align: center;
+}
+
+.container {
+    padding: 20px;
+}
+
+section {
+    background:#CD7F32; /*white;*
+    margin: 20px 0;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+    color: darkblue;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+}
+
+table, th, td {
+    border: 1px solid #ddd;
+}
+
+th, td {
+    padding: 12px;
+    text-align: left;
+}
+
+th {
+    background: darkblue;
+    color: white;
+}
+
+button {
+    padding: 8px 12px;
+    margin: 0 5px;
+    background: green;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button:hover {
+    background: darkgreen;
+}
+
+.main-footer {
+    background: darkblue;
+    color: white;
+    text-align: center;
+    padding: 10px;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+}*/
+body {
+    font-family: Arial, sans-serif;
+    background-color:#f4f4f4;
+    margin: 0;
+    padding: 0;
+}
+
+.main-header, .main-footer {
+    background-color:darkblue;/* #4CAF50;*/
+    color: white;
+    padding: 10px 0;
+    text-align: center;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 20px;
+    background: #CD7F32; /* white;*/
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.container h2 {
+    margin-top: 0;
+}
+
+.search-section, .users-section, .appointments-section, .billing-section {
+    margin-bottom: 20px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+table, th, td {
+    border: 1px solid #ddd;
+}
+
+th, td {
+    padding: 8px;
+    text-align: left;
+}
+
+th {
+    background-color:#f2f2f2;
+}
+
+form {
+    display: inline-block;
+}
+
+form input[type="number"] {
+    width: 100px;
+}
+
+.inner-box {
+    border: 1px solid #ddd;
+    padding: 10px;
+    background-color:#CD7F32;/* #f9f9f9;*/
+    margin-bottom: 20px;
+}
+
+.billing-details ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.billing-details li {
+    background: #CD7F32;/* #e9e9e9;*/
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+}
+

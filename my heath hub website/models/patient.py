@@ -15,3 +15,5 @@ class User(UserMixin, db.Model):
     phone_number = db.Column(db.String(15))
     profile_picture = db.Column(db.LargeBinary)
 
+    patient = db.relationship('User', back_populates='appointments')
+

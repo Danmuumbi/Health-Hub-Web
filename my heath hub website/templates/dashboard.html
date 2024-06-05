@@ -62,21 +62,32 @@
     </header>
 
     <div class="news-bar">
-        <!--<div class="news" onclick="navigateTo('{{ url_for('news_page') }}')">-->
-            <img src="star.png" alt="News Icon">
+       <!--<div class="news" onclick="navigateTo('{{ url_for('news_page') }}')">-->
+        <div class="news" data-url="{{ url_for('news_page') }}" onclick="navigateTo(this.dataset.url)"></div>
+            <!--<img src="../images/twitter.png" alt="News Icon">-->
+            <img class="image_news" src="{{ url_for('static', filename='images/star.jpeg') }}" alt="News Icon">
             <span>News</span>
         </div>
     </div>
 
     <div class="boxes">
         <div class="box box-appointments">
-            <h3>Appointments</h3>
-            <p>{{ appointments|length }}</p>
+            <h3>Booked Appointments</h3>
             <ul>
                 {% for appointment in appointments %}
-                    <li>{{ appointment.date_time }}</li>
+                    {% if appointment.date_time > now %}
+                        <li>{{ appointment.service_type }}</li>
+                        <li>{{ appointment.date_time }}</li>
+                    {% endif %}
                 {% endfor %}
             </ul>
+            
+            <!--<ul>
+                {% for appointment in appointments %}
+                    <li>{{ appointment.service_type }}</li>
+                    <li>{{ appointment.date_time }}</li>
+                {% endfor %}
+            </ul>-->
         </div>
         <div class="box box-attended">
             <h3>Attended Appointments</h3>
@@ -93,6 +104,7 @@
             <hr>
             <!--<button class="make-payment" onclick="navigateTo('{{ url_for('add_payment') }}')">Make Payment</button>
             <button class="make-payment" onclick='navigateTo({{ url_for("add_payment")|tojson|safe }})'>Make Payment</button>-->
+            <button class="make-payment" data-url="{{ url_for('add_payment')|tojson|safe }}" onclick="navigateTo(this.dataset.url)">Make Payment</button>
         </div>
     </div>
 

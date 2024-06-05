@@ -13,6 +13,10 @@ class User(db.Model, UserMixin):
     phone_number = db.Column(db.String(15))
     profile_picture = db.Column(db.LargeBinary)
 
+    appointments = db.relationship('Appointment', back_populates='patient')
+    medical_records = db.relationship('MedicalRecord', back_populates='user')
+    payments = db.relationship('Payment', back_populates='user')
+
     @property
     def is_authenticated(self):
         return True
@@ -27,3 +31,4 @@ class User(db.Model, UserMixin):
 
     def get_id(self):
         return str(self.user_id)
+        

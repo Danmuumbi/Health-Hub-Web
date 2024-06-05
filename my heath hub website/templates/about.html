@@ -3,47 +3,92 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About Health Hub</title>
-    <!-- Include any CSS files for styling -->
-    <link rel="stylesheet" href="styles.css">
+    <title>About Me - Daniel</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/about.css') }}">
 </head>
 <body>
-    <header>
-        <!-- Include header/navigation bar -->
-        <!-- You can use <nav> and <ul> to create navigation links -->
-        <nav>
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="features.html">Features</a></li>
-                <li><a href="about.html">About</a></li>
-            </ul>
+    <header class="main-header">
+        <nav class="header-nav">
+            <a href="{{ url_for('home') }}">Home</a>
+            <a href="{{ url_for('login') }}">Login</a>
+            <a href="{{ url_for('register') }}">Register</a>
+            <a href="{{ url_for('contact') }}">Contact</a>
+            <a href="{{ url_for('services') }}">Services</a>
+            <a href="{{ url_for('about') }}">About</a>
         </nav>
     </header>
-    <main>
-        <section id="about">
-            <h1>About Health Hub</h1>
-            <p>
-                <strong>Inspiration:</strong><br>
-                Health Hub is the culmination of my personal journey towards holistic wellness. Faced with the challenges of finding reliable health information and resources, I set out to create a solution that would empower others on their own wellness journeys.
-            </p>
-            <p>
-                <strong>Timeline:</strong><br>
-                This project is a testament to my dedication and passion for both web development and wellness. Developed as a Portfolio Project for Holberton School, it represents countless hours of learning, experimentation, and refinement.
-            </p>
-            <p>
-                <strong>Connect with Me:</strong><br>
-                Let's connect! Find me on <a href="[Your LinkedIn]">LinkedIn</a>, <a href="[Your GitHub]">GitHub</a>, and <a href="[Your Twitter]">Twitter</a>.
-            </p>
-            <p>
-                <strong>GitHub Repository:</strong><br>
-                Explore the code behind Health Hub on <a href="[GitHub Repository Link]">GitHub</a>.
-            </p>
-        </section>
-    </main>
-    <footer>
-        <!-- Include footer content if necessary -->
+    
+    <div class="main-content">
+        <div class="left-section">
+            <div class="info-rectangle">
+                <header class="rectangle-header">
+                    Daniel &#128522;
+                </header>
+                <div class="info-content-horizontal">
+                    <div class="text-content">
+                        <h2 class="name">
+                            <span class="name-white">Daniel</span>
+                            <span class="name-green">Muuo</span>
+                        </h2>
+                        <p class="passion">Passionate Software Engineer</p>
+                        <a href="#services" class="services-link">My Services</a>
+                    </div>
+                    <div class="photo-circle">
+                        <img src="{{ url_for('static', filename='images/myphoto.jpg') }}" alt="my Photo">
+                    </div>
+                </div>
+                <h3 class="about-me-header">About Me</h3>
+                <p class="about-me-text">Dedicated and passionate software engineering student with a relentless drive for excellence. Through rigorous training at the ALX Software Engineering Program and academic pursuits at Multimedia University of Kenya, I've developed a strong foundation in full-stack development and honed my skills in front-end design, back-end architecture, and database management. My journey has been marked by a commitment to continuous learning and a knack for multitasking. Balancing university coursework with real-world projects, I've demonstrated exceptional time management and organizational abilities, achieving success in both realms. With a proactive approach to problem-solving and a collaborative mindset, I thrive in dynamic environments where innovation and creativity are encouraged. As I embark on my career, I'm excited to leverage my technical expertise and passion for technology to make a meaningful impact in the world of software engineering.</p>
+            </div>
+        </div>
+        <div class="right-section">
+            <div class="projects-rectangle">
+                <h3 class="projects-header">Projects</h3>
+                <div class="projects-buttons">
+                    <button>Air Bnb clone</button>
+                    <button>Smart home</button>
+                    <button>Health Hub</button>
+                </div>
+                <div class="projects-gallery">
+                    <div class="project-photo photo1"></div>
+                    <div class="project-photo photo2"></div>
+                    <div class="project-photo photo3"></div>
+                    <div class="project-photo photo4"></div>
+                    <div class="project-photo photo5"></div>
+                    <div class="project-photo photo6"></div>
+                </div>
+                
+                
+                <h3 class="contact-me-header">Let us connect</h3>
+                <div class="social-media">
+                    <a href="https://twitter.com" target="_blank">
+                        <img src="{{ url_for('static', filename='images/twitter.png') }}" alt="twitter">
+                    </a>
+                    <a href="https://facebook.com" target="_blank">
+                        <img src="{{ url_for('static', filename='images/facebook.png') }}" alt="facebook">
+                    </a>
+                    <a href="https://wa.me/your-number" target="_blank">
+                        <img src="{{ url_for('static', filename='images/whatssap.png') }}" alt="whatssap">
+                    </a>
+                    <a href="https://wa.me/your-number" target="_blank">
+                        <img src="{{ url_for('static', filename='images/linkdin.png') }}" alt="whatssap">
+                    </a>
+                    <a href="https://wa.me/your-number" target="_blank">
+                        <img src="{{ url_for('static', filename='images/instagram.jpeg') }}" alt="whatssap">
+                    </a>                                      
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <footer class="main-footer">
+        <p>Stay curious, stay foolish. 😄</p>
     </footer>
+
+    <script src="scripts.js"></script>
 </body>
 </html>
+
+
 
 

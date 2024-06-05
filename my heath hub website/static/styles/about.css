@@ -1,0 +1,205 @@
+body {
+    font-family: Arial, sans-serif;
+    background: url('path/to/background-image.jpg') no-repeat center center fixed;
+    background-size: cover;
+    margin: 0;
+    color: white;
+}
+
+.main-header {
+    background-color: #574028;
+    color: white;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    /*align-items: center;*/
+    align-items: left;
+}
+
+.header-name {
+    font-size: 24px;
+}
+
+.header-nav a {
+    color: white;
+    text-decoration: none;
+    margin: 0 10px;
+}
+
+.main-content {
+    display: flex;
+    padding: 20px;
+}
+
+.left-section, .right-section {
+    flex: 1;
+    margin: 10px;
+    background-color:#CD7F32; /*rgba(0, 0, 0, 0.5);*/
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.info-rectangle, .projects-rectangle {
+    border: 2px solid #281E5D;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.rectangle-header {
+    background-color: #281E5D;
+    padding: 10px;
+    border-radius: 10px 10px 0 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.info-content-horizontal {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 20px 0;
+}
+
+.text-content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.name {
+    display: flex;
+    align-items: center;
+    font-size: 24px;
+}
+
+.name-white {
+    color: white;
+}
+
+.name-green {
+    color: #82EEFD;
+}
+body {
+    background-color: #59515E;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+.passion {
+    font-size: 18px;
+    margin: 10px 0;
+}
+
+.services-link {
+    background-color: green;
+    color: white;
+    text-align: center;
+    padding: 10px;
+    border-radius: 5px;
+    text-decoration: none;
+}
+
+.photo-circle {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 20px;
+}
+
+.photo-circle img {
+    border-radius: 50%;
+    width: 130px;
+    height: 130px;
+}
+
+.rectangle-image {
+    width: 100%;
+    margin: 20px 0;
+}
+
+.about-me-header, .projects-header, .contact-me-header {
+    font-size: 24px;
+    border-bottom: 2px solid green;
+    padding-bottom: 5px;
+}
+
+.about-me-text {
+    margin: 10px 0;
+}
+
+.projects-buttons button {
+    background-color: green;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    margin: 5px;
+    cursor: pointer;
+}
+
+.projects-buttons button:hover {
+    background-color: green;
+}
+
+.projects-gallery {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 20px 0;
+}
+
+.project-photo {
+    background-color: lightgray;
+    width: calc(33.33% - 10px);
+    margin: 5px;
+    height: 100px;
+    border-radius: 5px;
+}
+
+.social-media a {
+    margin: 0 10px;
+}
+
+.social-media img {
+    width: 30px;
+    height: 30px;
+}
+.project-photo {
+    background-size: cover;
+    background-position: center;
+}
+
+.photo1 {
+    background-image: url('../images/airbnb.jpg');
+}
+
+.photo2 {
+    background-image: url('../images/smarthome.png');
+}
+
+.photo3 {
+    background-image: url('../images/healthhu.jpg');
+}
+
+.photo4 {
+    background-image: url('../images/schoolwe.jpg');
+}
+
+.photo5 {
+    background-image: url('../images/payroll.jpeg');
+}
+
+.photo6 {
+    background-image: url('../images/portofolio.avif');
+}
+
+
+.main-footer {
+    background-color: #6c5136;
+    color: white;
+    text-align: center;
+    padding: 10px;
+    margin-top: 20px;
+    font-size: 14px;
+}
+

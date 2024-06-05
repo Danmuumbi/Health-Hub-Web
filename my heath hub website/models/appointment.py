@@ -8,3 +8,6 @@ class Appointment(db.Model):
     service_type = db.Column(db.String(100))
     date_time = db.Column(db.DateTime, nullable=False)
     status = db.Column(db.String(50))
+    patient = db.relationship('User', back_populates='appointments')
+    price = db.Column(db.Numeric(10, 2))
+

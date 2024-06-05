@@ -10,3 +10,4 @@ class MedicalRecord(db.Model):
     lab_results = db.Column(db.Text)
     allergies = db.Column(db.Text)
     immunizations = db.Column(db.Text)
+    user = db.relationship('User', back_populates='medical_records')

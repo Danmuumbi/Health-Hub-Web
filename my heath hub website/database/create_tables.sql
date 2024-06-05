@@ -33,6 +33,8 @@ CREATE TABLE Appointments (
     date_time DATETIME NOT NULL,
     status VARCHAR(50),
     FOREIGN KEY (patient_id) REFERENCES Users(user_id)
+    ALTER TABLE Appointments ADD COLUMN price DECIMAL(10, 2);
+
 );
 
 -- Create Departments table

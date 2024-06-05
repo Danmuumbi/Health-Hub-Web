@@ -1,20 +1,263 @@
+<!--<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>New Appointment</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        form {
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 300px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #333;
+        }
+
+        input, select, button {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        button {
+            background-color: #5cb85c;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background-color:#4cae4c;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .container {
+            max-width: 400px;
+            margin: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Book New Appointment</h1>
+        <form action="{{ url_for('add_appointment') }}" method="POST">
+            {{ form.hidden_tag() }}
+            <div class="form-group">
+                <label for="service_type">Service Type:</label>
+                {{ form.service_type() }}
+            </div>
+            <div class="form-group">
+                <label for="date_time">Date and Time:</label>
+                <input type="datetime-local" id="date_time" name="date_time" value="{{ form.date_time.data }}" required>
+            </div>
+            <div class="form-group">
+                <label for="doctor_id">Doctor ID:</label>
+                {{ form.doctor_id() }}
+            </div>
+            <div class="form-group">
+                {{ form.submit(class="btn btn-primary") }}
+            </div>
+        </form>
+    </div>
+</body>
+</html>
+-->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>New Appointment</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        form {
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 300px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #333;
+        }
+
+        input, select, button {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        button {
+            background-color: #5cb85c;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background-color: #4cae4c;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .container {
+            max-width: 400px;
+            margin: auto;
+        }
+
+        .no-match {
+            color: red;
+            font-size: 12px;
+        }
+    </style>
 </head>
 <body>
-    <h1>Book New Appointment</h1>
-    <form action="{{ url_for('add_appointment') }}" method="POST">
-        {{ form.hidden_tag() }}
-        <label for="service_type">Service Type:</label>
-        {{ form.service_type() }}
-        <label for="date_time">Date and Time:</label>
-        {{ form.date_time() }}
-        <label for="status">Status:</label>
-        {{ form.status() }}
-        {{ form.submit() }}
-    </form>
+    <div class="container">
+        <h1>Book New Appointment</h1>
+        <form action="{{ url_for('add_appointment') }}" method="POST">
+            {{ form.hidden_tag() }}
+            <div class="form-group">
+                <label for="service_type">Service Type:</label>
+                <input list="services" id="service_type" name="service_type" required oninput="filterServices()">
+                <datalist id="services">
+                    <option value="Primary Care">
+                    <option value="Specialty Care">
+                    <option value="Emergency Care">
+                    <option value="Surgical Services">
+                    <option value="Diagnostic Imaging">
+                    <option value="Laboratory Services">
+                    <option value="Rehabilitation Services">
+                    <option value="Mental Health Services">
+                    <option value="Maternity and Obstetric Care">
+                    <option value="Pediatric Care">
+                    <option value="Chronic Disease Management">
+                    <option value="Wellness and Preventive Care">
+                    <option value="Outpatient Clinics">
+                    <option value="Home Health Services">
+                    <option value="Hospice and Palliative Care">
+                    <option value="Pharmacy Services">
+                    <option value="Nutrition and Dietary Counseling">
+                    <option value="Health Education and Wellness Programs">
+                    <option value="Medical Equipment and Supplies">
+                    <option value="Telemedicine and Virtual Care">
+                </datalist>
+                <p class="no-match" id="no-match" style="display: none;">No such service found</p>
+            </div>
+            <div class="form-group">
+                <label for="date_time">Date and Time:</label>
+                <input type="datetime-local" id="date_time" name="date_time" required>
+            </div>
+            <div class="form-group">
+                <label for="doctor_id">Doctor ID:</label>
+                {{ form.doctor_id() }}
+            </div>
+            <div class="form-group">
+                {{ form.submit(class="btn btn-primary") }}
+            </div>
+        </form>
+    </div>
+
+    <script>
+        const services = [
+            "Primary Care",
+            "Specialty Care",
+            "Emergency Care",
+            "Surgical Services",
+            "Diagnostic Imaging",
+            "Laboratory Services",
+            "Rehabilitation Services",
+            "Mental Health Services",
+            "Maternity and Obstetric Care",
+            "Pediatric Care",
+            "Chronic Disease Management",
+            "Wellness and Preventive Care",
+            "Outpatient Clinics",
+            "Home Health Services",
+            "Hospice and Palliative Care",
+            "Pharmacy Services",
+            "Nutrition and Dietary Counseling",
+            "Health Education and Wellness Programs",
+            "Medical Equipment and Supplies",
+            "Telemedicine and Virtual Care"
+        ];
+
+        function filterServices() {
+            const input = document.getElementById('service_type').value.toLowerCase();
+            const datalist = document.getElementById('services');
+            const noMatch = document.getElementById('no-match');
+
+            datalist.innerHTML = '';
+
+            let matchFound = false;
+
+            services.forEach(service => {
+                if (service.toLowerCase().includes(input)) {
+                    const option = document.createElement('option');
+                    option.value = service;
+                    datalist.appendChild(option);
+                    matchFound = true;
+                }
+            });
+
+            if (!matchFound && input !== '') {
+                noMatch.style.display = 'block';
+            } else {
+                noMatch.style.display = 'none';
+            }
+        }
+    </script>
 </body>
 </html>
+
+
