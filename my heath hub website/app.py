@@ -1,4 +1,4 @@
-from flask import Flask, render_template, redirect, url_for, flash, request
+from flask import Flask, render_template, redirect, url_for, flash, request,jsonify,session,Blueprint
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 from flask_wtf import FlaskForm
@@ -8,7 +8,7 @@ from flask_bcrypt import Bcrypt
 from flask_login import LoginManager, UserMixin, login_user, current_user, logout_user, login_required
 from flask_migrate import Migrate
 from config import Config
-from models import db, User, MedicalRecord, Appointment, Department, Payment
+from models import db, User, MedicalRecord, Appointment, Department, Payment,Product,OrderItem,Order
 from forms import RegistrationForm, LoginForm, MedicalRecordForm, AppointmentForm, PaymentForm
 import logging
 from flask_mail import Mail, Message
@@ -268,23 +268,6 @@ def remove_user(user_id):
         db.session.commit()
     return redirect(url_for('admin_dashboard'))
 
-"""@app.route('/reset_password', methods=['GET', 'POST'])
-def reset_password_request():
-    if request.method == 'POST':
-        email = request.form['email']
-        user = User.query.filter_by(email=email).first()
-        if user:
-            token = s.dumps(user.email, salt='password-reset-salt')
-            reset_link = url_for('reset_password', token=token, _external=True)
-            msg = Message('Password Reset Request', sender=app.config['MAIL_DEFAULT_SENDER'], recipients=[user.email])
-            msg.body = f'Your link to reset the password is {reset_link}. The link is valid for 1 hour.'
-            mail.send(msg)
-            flash('A password reset link has been sent to your email.', 'info')          
-        else:
-            flash('Email not found', 'error')
-        return redirect(url_for('login'))
-    return render_template('reset_password_request.html')"""
-
 @app.route('/reset_password', methods=['GET', 'POST'])
 def reset_password_request():
     if request.method == 'POST':
@@ -325,6 +308,113 @@ def reset_password(token):
     return render_template('reset_password.html', token=token)
 
 
+"""ordering items"""
+@app.route('/products_sale')
+def products_sale():
+    return render_template('products_sale.html')
+
+@app.route('/products', methods=['GET'])
+def get_products():
+    products = Product.query.all()
+    return jsonify([
+        {
+            'product_id': product.product_id,
+            'product_name': product.product_name,
+            'description': product.description,
+            'price': str(product.price),
+            'stock': product.stock
+        } for product in products
+    ])
+
+@app.route('/products', methods=['POST'])
+def add_product():
+    if 'user_id' not in session:
+        return jsonify({"message": "Login required to add products"}), 401
+
+    data = request.json
+    new_product = Product(
+        seller_id=session['user_id'],
+        product_name=data['product_name'],
+        description=data['description'],
+        price=data['price'],
+        stock=data['stock'],
+        image=data.get('image')
+    )
+    db.session.add(new_product)
+    db.session.commit()
+    return jsonify({"message": "Product added successfully!"}), 201
+
+@app.route('/products/<int:product_id>', methods=['PUT'])
+def update_product(product_id):
+    if 'user_id' not in session:
+        return jsonify({"message": "Login required to update products"}), 401
+
+    product = Product.query.get(product_id)
+    if not product or product.seller_id != session['user_id']:
+        return jsonify({"message": "Product not found or unauthorized"}), 404
+
+    data = request.json
+    product.product_name = data['product_name']
+    product.description = data['description']
+    product.price = data['price']
+    product.stock = data['stock']
+    product.image = data.get('image')
+    db.session.commit()
+    return jsonify({"message": "Product updated successfully!"}), 200
+
+@app.route('/products/<int:product_id>', methods=['DELETE'])
+def delete_product(product_id):
+    if 'user_id' not in session:
+        return jsonify({"message": "Login required to delete products"}), 401
+
+    product = Product.query.get(product_id)
+    if not product or product.seller_id != session['user_id']:
+        return jsonify({"message": "Product not found or unauthorized"}), 404
+
+    db.session.delete(product)
+    db.session.commit()
+    return jsonify({"message": "Product deleted successfully!"}), 200
+
+@app.route('/orders', methods=['POST'])
+def place_order():
+    data = request.json
+    new_order = Order(
+        buyer_id=data['buyer_id'],  # This could be session['user_id'] if only logged-in users can order
+        total_amount=data['total_amount'],
+        status="Pending"
+    )
+    db.session.add(new_order)
+    db.session.commit()
+
+    for item in data['items']:
+        order_item = OrderItem(
+            order_id=new_order.order_id,
+            product_id=item['product_id'],
+            quantity=item['quantity'],
+            price=item['price']
+        )
+        db.session.add(order_item)
+    
+    db.session.commit()
+    return jsonify({"message": "Order placed successfully!"}), 201
+
+products_bp = Blueprint('products', __name__)
+
+@products_bp.route('/products', methods=['GET'])
+def get_products():
+    products = Product.query.all()
+    product_list = [
+        {
+            'product_id': product.product_id,
+            'seller_id': product.seller_id,
+            'product_name': product.product_name,
+            'description': product.description,
+            'price': str(product.price),
+            'stock': product.stock,
+            'image': product.image.decode() if product.image else None
+        } for product in products
+    ]
+    return jsonify(product_list)
 
 if __name__ == '__main__':
     app.run(debug=True)

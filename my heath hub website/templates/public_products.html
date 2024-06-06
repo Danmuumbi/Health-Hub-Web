@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Products for Sale</title>
+</head>
+<body>
+    <h1>Products for Sale</h1>
+    <div id="product-list"></div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            fetch('/products')
+            .then(response => response.json())
+            .then(data => {
+                const productList = document.getElementById('product-list');
+                data.forEach(product => {
+                    const productElement = document.createElement('div');
+                    productElement.innerHTML = `
+                        <h2>${product.product_name}</h2>
+                        <p>${product.description}</p>
+                        <p>Price: $${product.price}</p>
+                        <p>Stock: ${product.stock}</p>
+                        <button onclick="contactSeller(${product.seller_id})">Contact Seller</button>
+                    `;
+                    productList.appendChild(productElement);
+                });
+            })
+            .catch(error => console.error('Error:', error));
+        });
+
+        function contactSeller(sellerId) {
+            // Implement the functionality to contact the seller
+            alert(`Contact seller with ID: ${sellerId}`);
+        }
+    </script>
+</body>
+</html>

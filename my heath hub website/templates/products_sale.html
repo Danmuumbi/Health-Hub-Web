@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Health Hub Marketplace</title>
+</head>
+<body>
+    <h1>Health Hub Marketplace</h1>
+    
+    <!-- Form for Adding Products -->
+    <h2>Add Product</h2>
+    <form id="add-product-form">
+        <input type="text" id="product_name" placeholder="Product Name" required>
+        <textarea id="description" placeholder="Description"></textarea>
+        <input type="number" id="price" placeholder="Price" required>
+        <input type="number" id="stock" placeholder="Stock" required>
+        <input type="file" id="image" placeholder="Image">
+        <button type="submit">Add Product</button>
+    </form>
+    
+    <!-- Product List -->
+    <h2>Products</h2>
+    <div id="product-list"></div>
+
+    <!-- Include JavaScript files -->
+    <script src="{{ url_for('static', filename='jsscripts/products_sale.js') }}"></script>
+</body>
+</html>
+
