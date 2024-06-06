@@ -1,56 +1,21 @@
-<!--<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Dashboard</title>
-</head>
-<body>
-    <h1>Welcome, {{ user.username }}</h1>
-    <p>Email: {{ user.email }}</p>
-    <p>Date of Birth: {{ user.date_of_birth }}</p>
-    <p>Gender: {{ user.gender }}</p>
-    <p>Address: {{ user.address }}</p>
-    <p>Phone Number: {{ user.phone_number }}</p>
-
-    <h2>Medical Records</h2>
-    <ul>
-        {% for record in medical_records %}
-            <li>{{ record.medical_history }} - {{ record.medications }} - {{ record.vaccination_record }} - {{ record.lab_results }} - {{ record.allergies }} - {{ record.immunizations }}</li>
-        {% endfor %}
-    </ul>
-    <a href="{{ url_for('add_medical_record') }}">Add Medical Record</a>
-
-    <h2>Appointments</h2>
-    <ul>
-        {% for appointment in appointments %}
-            <li>{{ appointment.service_type }} - {{ appointment.date_time }} - {{ appointment.status }}</li>
-        {% endfor %}
-    </ul>
-    <a href="{{ url_for('add_appointment') }}">Book Appointment</a>
-
-    <h2>Payments</h2>
-    <ul>
-        {% for payment in payments %}
-            <li>{{ payment.payment_info }}</li>
-        {% endfor %}
-    </ul>
-    <a href="{{ url_for('add_payment') }}">Make Payment</a>
-
-    <a href="{{ url_for('logout') }}">Logout</a>
-</body>
-</html>-->
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Dashboard</title>
-    <!--<link rel="stylesheet" href="styles.css">-->
     <link rel="stylesheet" href="{{ url_for('static', filename='styles/dashboard.css') }}">
 </head>
 <body>
     <header>
-        <div>HEALTH HUB PORTAL</div>
+        <div class="header-left">HEALTH HUB PORTAL</div>
+        <nav>
+            <ul>
+                <li class="links"><a href="/">Home</a></li>
+                <li class="links"><a href="/about">About</a></li>
+                <li class="links"><a href="/contact">contact</a></li>
+                <li class="links"><a href="/services">Services</a></li>
+            </ul>
+        </nav>
         <div class="user-info" onclick="confirmLogout()">
             {% if user.photo %}
                 <img src="{{ user.photo }}" alt="User Photo">
@@ -62,10 +27,12 @@
     </header>
 
     <div class="news-bar">
-       <!--<div class="news" onclick="navigateTo('{{ url_for('news_page') }}')">-->
         <div class="news" data-url="{{ url_for('news_page') }}" onclick="navigateTo(this.dataset.url)"></div>
-            <!--<img src="../images/twitter.png" alt="News Icon">-->
-            <img class="image_news" src="{{ url_for('static', filename='images/star.jpeg') }}" alt="News Icon">
+            
+            <a href="https://www.health.go.ke/" target="_blank">
+                <img class="image_news" src="{{ url_for('static', filename='images/star.jpeg') }}" alt="News Icon">
+            </a>
+            
             <span>News</span>
         </div>
     </div>
@@ -82,12 +49,6 @@
                 {% endfor %}
             </ul>
             
-            <!--<ul>
-                {% for appointment in appointments %}
-                    <li>{{ appointment.service_type }}</li>
-                    <li>{{ appointment.date_time }}</li>
-                {% endfor %}
-            </ul>-->
         </div>
         <div class="box box-attended">
             <h3>Attended Appointments</h3>

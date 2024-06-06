@@ -19,6 +19,13 @@ from itsdangerous import URLSafeTimedSerializer
 
 app = Flask(__name__)
 app.config.from_object(Config)
+app.config['MAIL_SERVER'] = 'smtp.gmail.com'
+app.config['MAIL_PORT'] = 587
+app.config['MAIL_USE_TLS'] = True
+app.config['MAIL_USE_SSL'] = False
+app.config['MAIL_USERNAME'] = 'muumbidaniel0@gmail.com'
+app.config['MAIL_PASSWORD'] = 'mmuuo2015'
+
 
 db.init_app(app)
 bcrypt = Bcrypt(app)
@@ -260,6 +267,23 @@ def remove_user(user_id):
         db.session.delete(user)
         db.session.commit()
     return redirect(url_for('admin_dashboard'))
+
+"""@app.route('/reset_password', methods=['GET', 'POST'])
+def reset_password_request():
+    if request.method == 'POST':
+        email = request.form['email']
+        user = User.query.filter_by(email=email).first()
+        if user:
+            token = s.dumps(user.email, salt='password-reset-salt')
+            reset_link = url_for('reset_password', token=token, _external=True)
+            msg = Message('Password Reset Request', sender=app.config['MAIL_DEFAULT_SENDER'], recipients=[user.email])
+            msg.body = f'Your link to reset the password is {reset_link}. The link is valid for 1 hour.'
+            mail.send(msg)
+            flash('A password reset link has been sent to your email.', 'info')          
+        else:
+            flash('Email not found', 'error')
+        return redirect(url_for('login'))
+    return render_template('reset_password_request.html')"""
 
 @app.route('/reset_password', methods=['GET', 'POST'])
 def reset_password_request():

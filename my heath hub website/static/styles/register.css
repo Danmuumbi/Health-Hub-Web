@@ -1,112 +1,6 @@
-/*body {
-    font-family: Arial, sans-serif;
-    background: url('../images/backgrud.jpg') no-repeat center center fixed;
-    background-size: cover;
-    margin: 0;
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-}
-
-header {
-   /* background-color: rgba(255, 255, 255, 0.8);*
-    padding: 10px 0;
-}
-
-header h1 {
-    text-align: center;
-    margin: 0;
-}
-
-nav ul {
-    list-style: none;
-    display: flex;
-    justify-content: center;
-    padding: 0;
-}
-
-nav ul li {
-    margin: 0 15px;
-}
-
-nav ul li a {
-    text-decoration: none;
-    color: #333;
-}
-
-.login-container, .register-container {
-    /*background: rgba(255, 255, 255, 0.9);*
-    background: url('../images/backgrud.jpg') no-repeat center center fixed;
-    border-radius: 15px;
-    padding: 20px;
-    max-width: 400px;
-    margin: auto;
-    margin-top: 100px;
-    box-shadow: 0 4px 8px cornsilk;
-    text-align: center;
-}
-
-.form-group {
-    margin-bottom: 15px;
-}
-
-.form-group label {
-    display: block;
-    margin-bottom: 5px;
-}
-
-.form-group input[type="email"],
-.form-group input[type="password"],
-.form-group input[type="text"],
-.form-group input[type="date"],
-.form-group input[type="tel"],
-.form-group select {
-    width: calc(100% - 10px);
-    padding: 8px;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-}
-
-.form-group button {
-    width: 100%;
-    padding: 10px;
-    border: none;
-    border-radius: 5px;
-    background-color: #28a745;
-    color: white;
-    font-size: 16px;
-}
-
-.form-group input[type="checkbox"] {
-    margin-right: 5px;
-}
-
-.create-account, .login-account {
-    margin-top: 15px;
-}
-
-.create-account p, .login-account p {
-    margin: 0;
-    font-size: 14px;
-}
-
-.create-account a, .login-account a {
-    display: block;
-    margin-top: 5px;
-    text-decoration: none;
-    color: #007bff;
-    font-size: 16px;
-}
-
-footer {
-   /* background-color: rgba(255, 255, 255, 0.8);*
-    padding: 10px 0;
-    text-align: center;
-    margin-top: auto;
-}*/
 body {
     font-family: Arial, sans-serif;
-    background: url('background.jpg') no-repeat center center fixed;
+    background: url('../images/backgrud.jpg') no-repeat center center fixed;
     background-size: cover;
     margin: 0;
     display: flex;
@@ -115,13 +9,17 @@ body {
 }
 
 header {
-    background-color: rgba(255, 255, 255, 0.8);
+    /*background-color: rgba(255, 255, 255, 0.8);*/
+    background: url('../images/backgrud.jpg') no-repeat center center fixed;
     padding: 10px 0;
 }
 
 header h1 {
     text-align: center;
     margin: 0;
+    background: url('../images/backgrud.jpg') no-repeat center center fixed;
+    
+    
 }
 
 nav ul {
@@ -141,7 +39,7 @@ nav ul li a {
 }
 
 .register-container, .login-container {
-    background: rgba(255, 255, 255, 0.9);
+    background: url('../images/backgrud.jpg') no-repeat center center fixed;
     border-radius: 15px;
     padding: 20px;
     max-width: 400px;
@@ -153,11 +51,13 @@ nav ul li a {
 
 .form-group {
     margin-bottom: 15px;
+    background: url('../images/backgrud.jpg') no-repeat center center fixed;
 }
 
 .form-group label {
     display: block;
     margin-bottom: 5px;
+    background: url('../images/backgrud.jpg') no-repeat center center fixed;
 }
 
 .form-control {
@@ -170,6 +70,7 @@ nav ul li a {
 
 .form-group input[type="checkbox"] {
     margin-top: 10px;
+
 }
 
 .btn {
@@ -184,7 +85,7 @@ nav ul li a {
 }
 
 footer {
-    background-color: rgba(255, 255, 255, 0.8);
+   background: url('../images/backgrud.jpg') no-repeat center center fixed;
     padding: 10px 0;
     text-align: center;
     margin-top: auto;

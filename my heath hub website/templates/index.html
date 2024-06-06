@@ -26,11 +26,11 @@
             <p>Health Hub</p>
         </div>
         <div class="nav-links">
-            <a href="#healthier-sg">Healthier SG</a>
-            <a href="#lab-results">Lab Results</a>
-            <a href="#payments">Payments</a>
-            <a href="#appointments">Appointments</a>
-            <a href="#immunization">Immunization</a>
+            <a href="services">Services</a>
+            <a href="#lab-results" id="lab-results-link">Lab Results</a>
+            <a href="#payments" id="payments-link" target="_blank">Payments</a>
+            <a href="#appointments" id="appointments-link">Appointments</a>
+            <a href="#immunization" id="immunization-link">Immunization</a>
             <a href="{{ url_for('login') }}" class="login-button">Login</a>
         </div>
         <div class="social-media">
@@ -58,15 +58,15 @@
     <!-- Services Section -->
     <p>Health services</p>
     <section id="services">
-        <div class="service-container" onclick="window.location.href='service1.html'">
+        <div class="service-container"onclick="window.location.href='https://www.youtube.com/watch?v=MwHtUKyLrac'" target="_blank">
             <h3>Fitness Classes:</h3>
             <p>A healthy facility can provide a variety of fitness classes catering to different levels and interests. From high-intensity interval training (HIIT) to yoga and Pilates, these classes offer structured workouts led by certified instructors to help individuals improve their strength, flexibility, and cardiovascular health in a supportive group environment.</p>
         </div>
-        <div class="service-container" onclick="window.location.href='service2.html'">
+        <div class="service-container" onclick="window.location.href='https://www.nyu.edu/students/health-and-wellness/services/counseling-services/wellness-workshops.html'" target="_blank">
             <h3>Wellness Workshops:</h3>
             <p>These workshops cover various topics such as stress management, mindfulness, and sleep hygiene. Led by experts, they equip participants with practical strategies to enhance their overall well-being and cultivate a healthier lifestyle.</p>
         </div>
-        <div class="service-container" onclick="window.location.href='service3.html'">
+        <div class="service-container" onclick="window.location.href='https://www.advocatehealth.com/health-services/screenings/'" target="_blank">
             <h3>Health Screenings:</h3>
             <p>Health screenings offered at the facility provide vital information about an individual's health status. These screenings may include blood pressure checks, cholesterol tests, and body composition analysis, helping individuals monitor their health and take proactive steps towards prevention and early detection of potential health issues.</p>
         </div>
@@ -121,7 +121,7 @@
         <div class="tool-container" onclick="window.location.href='https://www.calculator.net/calorie-calculator.html'">
             <p>Calorie Calculator <span class="arrow">→</span></p>
         </div>
-        <div class="tool-container" onclick="window.location.href='more-services.html'">
+        <div class="tool-container" onclick="window.location.href='/services'">
             <p>More Services <span class="arrow">→</span></p>
         </div>
     </section>
@@ -142,6 +142,9 @@
             <a href="https://www.equitygroupholdings.com/ke" target="_blank">
                 <img src="{{ url_for('static', filename='images/equity.png') }}" alt="Equity Bank">
             </a>
+            <a href="https://www.alxafrica.com/software-engineering-hard-vs-soft-skills/" target="_blank">
+                <img src="{{ url_for('static', filename='images/alx.jpeg') }}" alt="ALX">
+            </a>
         </div>
     </section>
 
@@ -154,7 +157,7 @@
             </div>
             <div class="footer-section contact-form">
                 <h3>Contact Us</h3>
-                <form action="mailto:example@example.com" method="post" enctype="text/plain">
+                <form action="mailto:muumbidaniel@gmail.com" method="post" enctype="text/plain">
                     <input type="email" name="email" placeholder="Your Email Address" required>
                     <textarea name="message" placeholder="Your Message" required></textarea>
                     <button type="submit">Send</button>
@@ -178,6 +181,12 @@
                 </a>
                 <a href="https://t.me/addcontact?phone=+254714202946" target="_blank">
                     <img src="{{ url_for('static', filename='images/telegram.jpeg') }}" alt="Telegram">
+                </a>
+                <a href="https://www.linkedin.com/in/daniel-muumbi-8912b6288/" target="_blank">
+                    <img src="{{ url_for('static', filename='images/linkdin.png') }}" alt="linkdin">
+                </a>
+                <a href="https://github.com/settings/profile" target="_blank">
+                    <img src="{{ url_for('static', filename='images/github.png') }}" alt="github">
                 </a>
             </div>
         </div>

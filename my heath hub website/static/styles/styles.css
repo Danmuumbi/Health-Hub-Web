@@ -1,4 +1,4 @@
-/* General Styles */
+
 body {
     font-family: Arial, sans-serif;
     margin: 0;
@@ -6,9 +6,8 @@ body {
     box-sizing: border-box;
 }
 
-/* Header Styles */
 .header {
-    background-color: darkblue;/*darkblue;*/
+    background-color: darkblue;
     color: white;
     padding: 10px;
     display: flex;
@@ -26,7 +25,6 @@ body {
     border-radius: 50%;
 }
 
-/* Navigation Bar Styles */
 .navbar {
     background-color: #f2f2f2;
     display: flex;
@@ -63,7 +61,6 @@ body {
     margin-left: 10px;
 }
 
-/* Cover Photo Styles */
 .cover-photo {
     position: relative;
     width: 100%;
@@ -84,7 +81,6 @@ body {
     opacity: 1;
 }
 
-/* Services Section Styles */
 #services {
     display: flex;
     justify-content: space-around;
@@ -105,7 +101,6 @@ body {
     background-color: rgb(79, 121, 20);
 }
 
-/* Health Advice Section Styles */
 #health-advice {
     display: flex;
     justify-content: space-around;
@@ -122,7 +117,6 @@ body {
     height: 100px;
 }
 
-/* Health Tools Section Styles */
 #health-tools {
     padding: 20px;
     background-color: #f9f9f9;
@@ -169,7 +163,7 @@ body {
 }
 
 .footer-links a {
-    color: white;
+    color: red;/*white;*/
     text-decoration: none;
     margin: 0 10px;
 }
@@ -203,3 +197,4 @@ body {
     font-size: 24px;
     font-weight: bold;
 }
+
