@@ -1,0 +1,86 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: green;/*#CD7F32;*/
+}
+
+header {
+    background-color: #333;
+    color: #fff;
+    padding: 10px;
+    text-align: center;
+    position: relative;
+}
+
+header .order-instruction-link {
+    color: #00f;
+    cursor: pointer;
+    text-decoration: underline;
+    position: absolute;
+    right: 10px;
+    top: 10px;
+}
+
+.instruction-popup {
+    position: fixed;
+    top: -50%;
+    left: 0;
+    width: 100%;
+    height: 50%;
+    background-color: rgba(250, 239, 239, 0.8);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: top 0.5s ease;
+}
+
+.instruction-content {
+    display: flex;
+    width: 90%;
+    height: 90%;
+    background-color: #281a1a;
+    color: #000;
+}
+
+.instruction-content .instructions, .instruction-content .instruction-image {
+    flex: 1;
+    padding: 20px;
+}
+
+.instruction-content .instruction-image img {
+    width: 100%;
+    height: 20px;/*auto;*/
+}
+
+.goods-list {
+    display: flex;
+    flex-wrap: wrap;
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    justify-content: center;
+}
+
+.good-item {
+    flex: 1 1 calc(33.333% - 20px);
+    box-sizing: border-box;
+    padding: 10px;
+    margin: 10px;
+    border: 1px solid #ddd;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.good-item img {
+    width: 100%;
+    height: 40%; /*auto;*/
+}
+
+.good-details {
+    text-align: center;
+    padding: 10px;
+}
+

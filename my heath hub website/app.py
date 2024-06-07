@@ -1,31 +1,27 @@
-from flask import Flask, render_template, redirect, url_for, flash, request,jsonify,session,Blueprint
+from flask import Flask, render_template, redirect, url_for, flash, request, jsonify, session
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 from flask_wtf import FlaskForm
+from functools import wraps
 from wtforms import StringField, PasswordField, SubmitField, DateField, SelectField
 from wtforms.validators import DataRequired, Email, EqualTo
 from flask_bcrypt import Bcrypt
 from flask_login import LoginManager, UserMixin, login_user, current_user, logout_user, login_required
 from flask_migrate import Migrate
 from config import Config
-from models import db, User, MedicalRecord, Appointment, Department, Payment,Product,OrderItem,Order
+from models import db, User, MedicalRecord, Appointment, Department, Payment, Product, OrderItem, Order
 from forms import RegistrationForm, LoginForm, MedicalRecordForm, AppointmentForm, PaymentForm
 import logging
 from flask_mail import Mail, Message
-from werkzeug.security import generate_password_hash, check_password_hash
-from sqlalchemy.exc import IntegrityError
-from flask_mail import Mail
 from itsdangerous import URLSafeTimedSerializer
+from sqlalchemy.exc import IntegrityError 
+import os
+from werkzeug.utils import secure_filename
+import requests
+
 
 app = Flask(__name__)
 app.config.from_object(Config)
-app.config['MAIL_SERVER'] = 'smtp.gmail.com'
-app.config['MAIL_PORT'] = 587
-app.config['MAIL_USE_TLS'] = True
-app.config['MAIL_USE_SSL'] = False
-app.config['MAIL_USERNAME'] = 'muumbidaniel0@gmail.com'
-app.config['MAIL_PASSWORD'] = 'mmuuo2015'
-
 
 db.init_app(app)
 bcrypt = Bcrypt(app)
@@ -33,30 +29,41 @@ login_manager = LoginManager(app)
 login_manager.login_view = 'login'
 migrate = Migrate(app, db)
 
-logging.basicConfig(level=logging.DEBUG)
+#  i Initialized Flask-Mail
 mail = Mail(app)
 s = URLSafeTimedSerializer(app.config['SECRET_KEY'])
 
+if not os.path.exists(app.config['UPLOAD_FOLDER']):
+    os.makedirs(app.config['UPLOAD_FOLDER'])
+
+logging.basicConfig(level=logging.DEBUG)
+"""requsting api from sell_goods"""
+@app.route('/health_hub_route')
+def health_hub_route():
+    # Make a request to the sell_goods API to fetch goods data
+    sell_goods_response = requests.get('http://localhost:5001/api/sell_goods_data')
+    
+    if sell_goods_response.status_code == 200:
+        # If the request was successful, extract the goods data from the response
+        sell_goods_data = sell_goods_response.json()['goods']
+        return jsonify({'sell_goods_data': sell_goods_data})
+    else:
+        # If the request failed, return an error response
+        return jsonify({'error': 'Failed to fetch sell_goods data'}), 500
+    
+
+def allowed_file(filename):
+    return '.' in filename and filename.rsplit('.', 1)[1].lower() in app.config['ALLOWED_EXTENSIONS']
+
+
+"""end of fetching my data"""
+@app.route('/sell_goods')
+def sell_goods():
+    return render_template('products_sale.html')
 
 @login_manager.user_loader
 def load_user(user_id):
     return User.query.get(int(user_id))
-
-class RegistrationForm(FlaskForm):
-    username = StringField('Username', validators=[DataRequired()])
-    email = StringField('Email', validators=[DataRequired(), Email()])
-    password = PasswordField('Password', validators=[DataRequired()])
-    confirm_password = PasswordField('Confirm Password', validators=[DataRequired(), EqualTo('password')])
-    date_of_birth = DateField('Date of Birth', format='%Y-%m-%d', validators=[DataRequired()])
-    gender = SelectField('Gender', choices=[('M', 'Male'), ('F', 'Female'), ('O', 'Other')])
-    address = StringField('Address')
-    phone_number = StringField('Phone Number')
-    submit = SubmitField('Sign Up')
-
-class LoginForm(FlaskForm):
-    email = StringField('Email', validators=[DataRequired(), Email()])
-    password = PasswordField('Password', validators=[DataRequired()])
-    submit = SubmitField('Login')
 
 @app.route("/")
 @app.route("/home")
@@ -123,7 +130,6 @@ def dashboard():
     user_payments = Payment.query.filter_by(user_id=current_user.user_id).all()
     appointments = Appointment.query.all()
     now = datetime.now()
-
 
     return render_template('dashboard.html', user=current_user, 
                            medical_records=user_medical_records, 
@@ -203,13 +209,14 @@ def services():
 @app.route("/contact")
 def contact():
     return render_template('contact.html', title='Contact Us')
+
 @app.route('/news')
 def news_page():
     return render_template('news.html')
+
 @app.route('/update_info')
 def update_info():
     return render_template('update_info.html')
-
 
 @app.route('/admin/dashboard')
 @login_required
@@ -276,7 +283,7 @@ def reset_password_request():
         if user:
             token = s.dumps(user.email, salt='password-reset-salt')
             reset_link = url_for('reset_password', token=token, _external=True)
-            msg = Message('Password Reset Request', sender=app.config['MAIL_DEFAULT_SENDER'], recipients=[user.email])
+            msg = Message('Password Reset Request', sender=app.config['MAIL_USERNAME'], recipients=[user.email])
             msg.body = f'Your link to reset the password is {reset_link}. The link is valid for 1 hour.'
             mail.send(msg)
             flash('A password reset link has been sent to your email.', 'info')
@@ -297,7 +304,7 @@ def reset_password(token):
         password = request.form['password']
         user = User.query.filter_by(email=email).first()
         if user:
-            user.password = generate_password_hash(password)
+            user.password = bcrypt.generate_password_hash(password).decode('utf-8')
             db.session.commit()
             flash('Your password has been updated!', 'success')
             return redirect(url_for('login'))
@@ -307,11 +314,9 @@ def reset_password(token):
     
     return render_template('reset_password.html', token=token)
 
-
-"""ordering items"""
-@app.route('/products_sale')
+"""@app.route('/products_sale')
 def products_sale():
-    return render_template('products_sale.html')
+    return render_template('products_sale.html')"""
 
 @app.route('/products', methods=['GET'])
 def get_products():
@@ -322,23 +327,28 @@ def get_products():
             'product_name': product.product_name,
             'description': product.description,
             'price': str(product.price),
-            'stock': product.stock
+            'stock': product.stock,
+            'image': product.image
         } for product in products
     ])
 
 @app.route('/products', methods=['POST'])
 def add_product():
-    if 'user_id' not in session:
-        return jsonify({"message": "Login required to add products"}), 401
+    data = request.form
+    file = request.files.get('image')
+    image_path = None
 
-    data = request.json
+    if file:
+        filename = secure_filename(file.filename)
+        file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+        image_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+
     new_product = Product(
-        seller_id=session['user_id'],
         product_name=data['product_name'],
         description=data['description'],
         price=data['price'],
         stock=data['stock'],
-        image=data.get('image')
+        image=image_path
     )
     db.session.add(new_product)
     db.session.commit()
@@ -346,30 +356,32 @@ def add_product():
 
 @app.route('/products/<int:product_id>', methods=['PUT'])
 def update_product(product_id):
-    if 'user_id' not in session:
-        return jsonify({"message": "Login required to update products"}), 401
-
     product = Product.query.get(product_id)
-    if not product or product.seller_id != session['user_id']:
-        return jsonify({"message": "Product not found or unauthorized"}), 404
+    if not product:
+        return jsonify({"message": "Product not found"}), 404
 
-    data = request.json
+    data = request.form
+    file = request.files.get('image')
+    image_path = None
+
+    if file:
+        filename = secure_filename(file.filename)
+        file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+        image_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+
     product.product_name = data['product_name']
     product.description = data['description']
     product.price = data['price']
     product.stock = data['stock']
-    product.image = data.get('image')
+    product.image = image_path
     db.session.commit()
     return jsonify({"message": "Product updated successfully!"}), 200
 
 @app.route('/products/<int:product_id>', methods=['DELETE'])
 def delete_product(product_id):
-    if 'user_id' not in session:
-        return jsonify({"message": "Login required to delete products"}), 401
-
     product = Product.query.get(product_id)
-    if not product or product.seller_id != session['user_id']:
-        return jsonify({"message": "Product not found or unauthorized"}), 404
+    if not product:
+        return jsonify({"message": "Product not found"}), 404
 
     db.session.delete(product)
     db.session.commit()
@@ -379,7 +391,7 @@ def delete_product(product_id):
 def place_order():
     data = request.json
     new_order = Order(
-        buyer_id=data['buyer_id'],  # This could be session['user_id'] if only logged-in users can order
+        buyer_id=data['buyer_id'],
         total_amount=data['total_amount'],
         status="Pending"
     )
@@ -398,23 +410,18 @@ def place_order():
     db.session.commit()
     return jsonify({"message": "Order placed successfully!"}), 201
 
-products_bp = Blueprint('products', __name__)
 
-@products_bp.route('/products', methods=['GET'])
-def get_products():
-    products = Product.query.all()
-    product_list = [
-        {
-            'product_id': product.product_id,
-            'seller_id': product.seller_id,
-            'product_name': product.product_name,
-            'description': product.description,
-            'price': str(product.price),
-            'stock': product.stock,
-            'image': product.image.decode() if product.image else None
-        } for product in products
-    ]
-    return jsonify(product_list)
+@app.route('/public_products')
+def public_products():
+    sell_goods_response = requests.get('http://localhost:5001/api/sell_goods_data')
+    
+    if sell_goods_response.status_code == 200:
+        sell_goods_data = sell_goods_response.json()['goods']
+        return render_template('public_products.html', goods=sell_goods_data)
+    else:
+        flash('Failed to retrieve goods data', 'danger')
+        return redirect(url_for('home'))
+
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(port=5000,debug=True)

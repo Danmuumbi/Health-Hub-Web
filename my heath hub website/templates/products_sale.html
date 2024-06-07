@@ -1,30 +1,80 @@
+<!--<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sell Goods</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <h1>Sell Goods</h1>
+    <button id="fetchGoodsBtn">Fetch Goods Data</button>
+    <div id="goodsData"></div>
+
+    <script>
+        $(document).ready(function() {
+            $('#fetchGoodsBtn').click(function() {
+                $.ajax({
+                    url: '/health_hub_route',
+                    type: 'GET',
+                    success: function(response) {
+                        // Display goods data on the page
+                        var goodsDataHtml = '';
+                        response.sell_goods_data.forEach(function(good) {
+                            goodsDataHtml += '<p>' + good.name + ': $' + good.price + good.image + '</p>';
+                        });
+                        $('#goodsData').html(goodsDataHtml);
+                    },
+                    error: function(error) {
+                        console.error('Error fetching goods data:', error);
+                    }
+                });
+            });
+        });$
+
+    </script>
+</body>
+</html>
+-->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Health Hub Marketplace</title>
+    <title>Sell Goods</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
-    <h1>Health Hub Marketplace</h1>
-    
-    <!-- Form for Adding Products -->
-    <h2>Add Product</h2>
-    <form id="add-product-form">
-        <input type="text" id="product_name" placeholder="Product Name" required>
-        <textarea id="description" placeholder="Description"></textarea>
-        <input type="number" id="price" placeholder="Price" required>
-        <input type="number" id="stock" placeholder="Stock" required>
-        <input type="file" id="image" placeholder="Image">
-        <button type="submit">Add Product</button>
-    </form>
-    
-    <!-- Product List -->
-    <h2>Products</h2>
-    <div id="product-list"></div>
+    <h1>Sell Goods</h1>
+    <button id="fetchGoodsBtn">Fetch Goods Data</button>
+    <div id="goodsData"></div>
 
-    <!-- Include JavaScript files -->
-    <script src="{{ url_for('static', filename='jsscripts/products_sale.js') }}"></script>
+    <script>
+        $(document).ready(function() {
+            $('#fetchGoodsBtn').click(function() {
+                $.ajax({
+                    url: '/health_hub_route',
+                    type: 'GET',
+                    success: function(response) {
+                        var goodsDataHtml = '';
+                        response.sell_goods_data.forEach(function(good) {
+                            var imageUrl = '/static/uploads/' + good.image_file;
+                            goodsDataHtml += '<div>';
+                            goodsDataHtml += '<h2>' + good.name + '</h2>';
+                            goodsDataHtml += '<p>Price: $' + good.price + '</p>';
+                            goodsDataHtml += '<img src="' + imageUrl + '" alt="' + good.name + '">';
+                            goodsDataHtml += '</div>';
+                        });
+                        $('#goodsData').html(goodsDataHtml);
+                    },
+                    error: function(error) {
+                        console.error('Error fetching goods data:', error);
+                    }
+                });
+            });
+        });
+    </script>
 </body>
 </html>
 

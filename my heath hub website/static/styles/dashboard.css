@@ -5,6 +5,7 @@ body {
     margin: 0;
     padding: 0;
     color: #333;
+    background-color: goldenrod;
 }
 header nav ul {
     list-style: none;
@@ -116,11 +117,11 @@ header {
 .box h3 {
     margin-top: 0;
 }
-.box-appointments { background-color: darkblue; }
-.box-attended { background-color: rgb(171, 32, 32); }
-.box-payments { background-color: bronze; position: relative; }
+.box-appointments { background-color: green; }
+.box-attended { background-color: green; }/*rgb(171, 32, 32)*/
+.box-payments { background-color: blue; position: relative; }/*bronze*/
 .box-payments .inner-box {
-    background-color: rgb(173, 30, 30);
+    background-color:  green;/* green;*/
     border-radius: 10px;
     padding: 10px;
     margin-bottom: 10px;
@@ -130,7 +131,7 @@ header {
     bottom: 10px;
     left: 50%;
     transform: translateX(-50%);
-    background-color: green;
+    background-color: rgb(184, 13, 13);
     color: white;
     padding: 10px 20px;
     border: none;
@@ -147,7 +148,7 @@ header {
     width: 80%;
 }
 .medical-records .inner-box {
-    background-color: rgb(181, 38, 38);
+    background-color: green;
     border-radius: 10px;
     padding: 10px;
     margin: 10px 0;
