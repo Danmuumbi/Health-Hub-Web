@@ -1,0 +1,46 @@
+my health hub website/
+├── app.py
+├── config.py
+├── console.py
+├── database/
+│   └── file.json
+├── forms/
+│   ├── __init__.py
+│   ├── __pycache__/
+│   ├── appointments.py
+│   └── user_forms.py
+├── Models.py
+├── migrations/
+├── requirements.txt
+├── static/
+│   ├── images/
+│   ├── jsscripts/
+│   ├── profile_pics/
+│   ├── styles/
+│   └── uploads/
+├── templates/
+│   ├── about.html
+│   ├── admin_dashboard.html
+│   ├── contact.html
+│   ├── dashboard.html
+│   ├── doctor_dashboard.html
+│   ├── doctor_login.html
+│   ├── doctor_register.html
+│   ├── index.html
+│   ├── layout.html
+│   ├── login.html
+│   ├── new_appointment.html
+│   ├── new_medical_record.html
+│   ├── new_payment.html
+│   ├── news.html
+│   ├── products_sale.html
+│   ├── public_products.html
+│   ├── register.html
+│   ├── reset_password.html
+│   ├── reset_password_request.html
+│   ├── seller_products.html
+│   ├── services.html
+│   ├── today_appointments.html
+│   └── update_info.html
+├── utilities/
+└── views.py
