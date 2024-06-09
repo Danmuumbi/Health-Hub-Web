@@ -28,13 +28,6 @@ class MedicalRecordForm(FlaskForm):
     immunizations = TextAreaField('Immunizations')
     submit = SubmitField('Add Medical Record')
 
-"""class AppointmentForm(FlaskForm):
-    service_type = StringField('Service Type', validators=[DataRequired()])
-    date_time = DateTimeField('Date and Time', format='%Y-%m-%d %H:%M:%S', validators=[DataRequired()])
-    doctor_id = IntegerField('Doctor ID', validators=[DataRequired()])
-    status = StringField('Status', default='Pending')
-    submit = SubmitField('Book Appointment')"""
-
 class AppointmentForm(FlaskForm):
     service_type = StringField('Service Type', validators=[DataRequired()])
     date_time = StringField('Date and Time', validators=[DataRequired()])

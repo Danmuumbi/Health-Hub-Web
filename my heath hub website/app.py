@@ -465,30 +465,6 @@ def doctor_login():
     return render_template('doctor_login.html', title='Doctor Login', form=form)
 
 # Doctor registration route
-"""@app.route('/doctor_register', methods=['GET', 'POST'])
-def doctor_register():
-    form = RegistrationForm()  # Assuming you have a separate form for doctors
-    if form.validate_on_submit():
-        hashed_password = generate_password_hash(form.password.data, method='sha256')
-        new_doctor = Doctor(username=form.username.data, email=form.email.data, password=hashed_password,
-                            date_of_birth=form.date_of_birth.data, gender=form.gender.data,
-                            address=form.address.data, phone_number=form.phone_number.data,
-                            profile_picture=form.profile_picture.data)
-
-        try:
-            db.session.add(new_doctor)
-            db.session.commit()
-            flash('Registration successful!', 'success')
-            print('Registration successful! Redirecting to login.')
-            return redirect(url_for('doctor_login'))
-        except IntegrityError:
-            db.session.rollback()
-            flash('Email address already exists', 'danger')
-            print('IntegrityError: Email address already exists.')
-    else:
-        print('Form validation failed:', form.errors)
-    return render_template('doctor_register.html', title='Doctor Register', form=form)"""
-
 
 from flask import current_app
 

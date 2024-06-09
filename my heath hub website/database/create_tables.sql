@@ -8,12 +8,6 @@ DROP TABLE IF EXISTS product;
 DROP TABLE IF EXISTS Doctors;
 DROP TABLE IF EXISTS Doctor_Appointments;
 
-
-/*ALTER TABLE Doctor_Appointments DROP FOREIGN KEY Doctor_Appointments_ibfk_1;*/
-/*LTER TABLE Doctor_Appointments DROP FOREIGN KEY Doctor_Appointments_ibfk_2;*/
-
-/*DROP TABLE IF EXISTS Users;*/
-
 -- Drop parent tables
 DROP TABLE IF EXISTS Users;
 DROP TABLE IF EXISTS Departments;

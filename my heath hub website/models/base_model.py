@@ -14,7 +14,7 @@ class BaseModel:
             self.updated_at = datetime.now()
 
     def save(self):
-        from models import storage  # Move import here to avoid circular import
+        from models import storage 
         self.updated_at = datetime.now()
         storage.save(self)
 
