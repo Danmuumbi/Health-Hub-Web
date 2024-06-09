@@ -1,4 +1,3 @@
-
 -- Drop dependent tables first
 DROP TABLE IF EXISTS Medical_Records;
 DROP TABLE IF EXISTS Appointments;
@@ -6,6 +5,14 @@ DROP TABLE IF EXISTS Payments;
 DROP TABLE IF EXISTS order_item;
 DROP TABLE IF EXISTS `order`;
 DROP TABLE IF EXISTS product;
+DROP TABLE IF EXISTS Doctors;
+DROP TABLE IF EXISTS Doctor_Appointments;
+
+
+/*ALTER TABLE Doctor_Appointments DROP FOREIGN KEY Doctor_Appointments_ibfk_1;*/
+/*LTER TABLE Doctor_Appointments DROP FOREIGN KEY Doctor_Appointments_ibfk_2;*/
+
+/*DROP TABLE IF EXISTS Users;*/
 
 -- Drop parent tables
 DROP TABLE IF EXISTS Users;
@@ -101,3 +108,25 @@ CREATE TABLE order_item (
     FOREIGN KEY (product_id) REFERENCES product(product_id)
 );
 
+CREATE TABLE Doctors (
+    doctor_id INT AUTO_INCREMENT PRIMARY KEY,
+    username VARCHAR(50) NOT NULL,
+    email VARCHAR(100) NOT NULL UNIQUE,
+    password VARCHAR(255) NOT NULL,
+    date_of_birth DATE NOT NULL,
+    gender CHAR(1) NOT NULL,
+    address VARCHAR(255),
+    phone_number VARCHAR(15),
+    profile_picture BLOB
+);
+
+CREATE TABLE Doctor_Appointments (
+    appointment_id INT AUTO_INCREMENT PRIMARY KEY,
+    patient_id INT NOT NULL,
+    doctor_id INT NOT NULL,
+    service_type VARCHAR(100),
+    date_time DATETIME NOT NULL,
+    status VARCHAR(50),
+    FOREIGN KEY (patient_id) REFERENCES Users(user_id),
+    FOREIGN KEY (doctor_id) REFERENCES Doctors(doctor_id)
+);

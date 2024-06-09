@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, TextAreaField, DateTimeField, SubmitField, PasswordField, DateField, SelectField,IntegerField
+from wtforms import StringField, TextAreaField, DateTimeField, SubmitField, PasswordField, DateField, SelectField,IntegerField,FileField
 from wtforms.validators import DataRequired, Email, EqualTo
 
 class RegistrationForm(FlaskForm):
@@ -12,6 +12,7 @@ class RegistrationForm(FlaskForm):
     address = StringField('Address')
     phone_number = StringField('Phone Number')
     submit = SubmitField('Sign Up')
+    profile_picture = FileField('Profile Picture')
 
 class LoginForm(FlaskForm):
     email = StringField('Email', validators=[DataRequired(), Email()])
@@ -27,11 +28,6 @@ class MedicalRecordForm(FlaskForm):
     immunizations = TextAreaField('Immunizations')
     submit = SubmitField('Add Medical Record')
 
-"""class AppointmentForm(FlaskForm):
-    service_type = StringField('Service Type', validators=[DataRequired()])
-    date_time = DateTimeField('Date and Time', format='%Y-%m-%d %H:%M:%S', validators=[DataRequired()])
-    status = StringField('Status')
-    submit = SubmitField('Book Appointment')"""
 
 class AppointmentForm(FlaskForm):
     service_type = StringField('Service Type', validators=[DataRequired()])

@@ -4,13 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Health Hub</title>
+    <link rel="icon" type="image/png" href="../static/images/health.jpeg">
     <link rel="stylesheet" href="{{ url_for('static', filename='styles/styles.css') }}">
 </head>
 <body>
     <!-- Header Section -->
     <header class="header">
         <div class="header-left">
-            <span class="hire">Hire Me</span>
+            <!--<span class="hire">Hire Me</span>-->
             <span>Email: muuo@muumbi.com</span>
             <span>Phone: +254 714202946</span>
         </div>
@@ -27,12 +28,15 @@
         </div>
         <div class="nav-links">
             <!--<a href="services">Services</a>-->
-            <a href="http://127.0.0.1:5001/index">Services</a>
+            <!--<a href="http://127.0.0.1:5001/index">Services</a>-->
+            <a href="#sale-goods" id="sale-goods">Sale goods</a>
             <a href="#lab-results" id="lab-results-link">Lab Results</a>
-            <a href="#payments" id="payments-link" target="_blank">Payments</a>
+            <a href="{{ url_for('add_payment') }}">Make Payment</a>
+           <!-- <a href="#payments" id="payments-link" target="_blank">Payments</a>-->
             <a href="#appointments" id="appointments-link">Appointments</a>
             <a href="#immunization" id="immunization-link">Immunization</a>
-            <a href="{{ url_for('public_products') }}" id="immunization-link">products</a>
+            <a href="{{ url_for('public_products') }}" id="immunization-link">Buy Goods</a>
+            <a href="{{ url_for('news_page') }}" id="immunization-link">News</a>
             <a href="{{ url_for('login') }}" class="login-button">Login</a>
         </div>
         <div class="social-media">
@@ -150,28 +154,24 @@
         </div>
     </section>
 
+
+
     <!-- Footer Section -->
-    <footer class="footer">
+   <footer class="footer">
         <div class="footer-content">
             <div class="footer-section about">
                 <h3>About Us</h3>
-                <p>Health Hub is a premier health facility offering a range of services to help individuals achieve their health and wellness goals. Our mission is to provide accessible, high-quality healthcare services to the community.</p>
+                <p>Health Hub is a premier health facility offering a range of services to help individuals achieve their health and wellness goals. Our mission is to provide accessible, high-quality healthcare services to the community.This is a Portfolio Project for Holberton School</p>
             </div>
-            <div class="footer-section contact-form">
-                <h3>Contact Us</h3>
-                <form action="mailto:muumbidaniel@gmail.com" method="post" enctype="text/plain">
-                    <input type="email" name="email" placeholder="Your Email Address" required>
-                    <textarea name="message" placeholder="Your Message" required></textarea>
-                    <button type="submit">Send</button>
-                </form>
-            </div>
+
             <div class="footer-section links">
-                <h3>Quick Links</h3>
+                <h3>Quick links</h3>
                 <a href="{{ url_for('register') }}">Register</a>
-                <a href="{{ url_for('about') }}">About</a>
+                <a href="{{ url_for('about') }}">Developer team</a>
                 <a href="{{ url_for('services') }}">Services</a>
                 <a href="{{ url_for('contact') }}">Contact Information</a>
                 <a href="{{ url_for('login') }}">login</a>
+                <a href="{{ url_for('doctor_login') }}">Doctor login</a>
             </div>
             <div class="footer-section social-media">
                 <h3>Follow Us</h3>

@@ -1,48 +1,10 @@
-<!--<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sell Goods</title>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-</head>
-<body>
-    <h1>Sell Goods</h1>
-    <button id="fetchGoodsBtn">Fetch Goods Data</button>
-    <div id="goodsData"></div>
-
-    <script>
-        $(document).ready(function() {
-            $('#fetchGoodsBtn').click(function() {
-                $.ajax({
-                    url: '/health_hub_route',
-                    type: 'GET',
-                    success: function(response) {
-                        // Display goods data on the page
-                        var goodsDataHtml = '';
-                        response.sell_goods_data.forEach(function(good) {
-                            goodsDataHtml += '<p>' + good.name + ': $' + good.price + good.image + '</p>';
-                        });
-                        $('#goodsData').html(goodsDataHtml);
-                    },
-                    error: function(error) {
-                        console.error('Error fetching goods data:', error);
-                    }
-                });
-            });
-        });$
-
-    </script>
-</body>
-</html>
--->
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sell Goods</title>
+    <link rel="icon" type="image/png" href="../static/images/health.jpeg">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>

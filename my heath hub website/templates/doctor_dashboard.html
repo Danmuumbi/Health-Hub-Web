@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doctor Dashboard</title>
+    <link rel="icon" type="image/png" href="../static/images/health.jpeg">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/doctors_dashboard.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <aside class="sidebar">
+            <div class="profile">
+                <img src="{{ url_for('static', filename='images/health.jpeg') if not doctor.profile_picture else doctor.profile_picture }}" class="profile-picture" alt="Profile Picture">
+                <h2>{{ doctor.username }}</h2>
+                <p>{{ doctor.role }}</p>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="/"><i class="fas fa-home"></i> Home</a></li>
+                    <li><a href="#profile"><i class="fas fa-user"></i> Profile</a></li>
+                    <li><a href="#appointments"><i class="fas fa-calendar-check"></i> Appointments</a></li>
+                    <li><a href="#patients"><i class="fas fa-users"></i> Patients</a></li>
+                    <li><a href="#messages"><i class="fas fa-envelope"></i> Messages</a></li>
+                    <li><a href="/logout"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+                </ul>
+            </nav>
+        </aside>
+        <main class="main-content">
+            <header>
+                <h1>Dashboard Overview</h1>
+                <input type="text" placeholder="Search...">
+            </header>
+            <section class="welcome">
+                <h2>Welcome, Dr. {{ doctor.username }}</h2>
+                <p>Here's an overview of your activity today.</p>
+            </section>
+            <section class="stats">
+                <div class="box">
+                    <i class="fas fa-user-md"></i>
+                    <div>
+                        <h3>{{ total_patients }}</h3>
+                        <p>Patients</p>
+                    </div>
+                </div>
+                <div class="box">
+                    <i class="fas fa-calendar-check"></i>
+                    <div>
+                        <!--<h3>{{ todays_appointments|length }}</h3>-->
+                        <p>{{ appointments|selectattr('date_time', '>', now)|list|length }}</p>
+                        <p>Today's Appointments</p>
+                    </div>
+                </div>
+                <div class="box">
+                    <i class="fas fa-calendar-day"></i>
+                    <div>
+                        <h3>{{ weekly_appointments|length }}</h3>
+                        <p>This Week's Appointments</p>
+                    </div>
+                </div>
+                <div class="box">
+                    <i class="fas fa-envelope"></i>
+                    <div>
+                        <h3>{{ new_messages|length }}</h3>
+                        <p>New Messages</p>
+                    </div>
+                </div>
+            </section>
+            <section class="appointments-today">
+                <h3>Today's Appointments</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Time</th>
+                            <th>Patient</th>
+                            <th>Service</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for appointment in todays_appointments %}
+                        <tr>
+                            <td>{{ appointment.date_time.strftime('%H:%M') }}</td>
+                            <td>{{ appointment.patient.username }}</td>
+                            <td>{{ appointment.service_type }}</td>
+                            <td>{{ appointment.status }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+               
+                <a href="{{ url_for('todays_appointments') }}" class="see-all">See All Appointments</a>
+            </section>
+            <section class="recent-messages">
+                <h3>Recent Messages</h3>
+                <ul>
+                    {% for message in recent_messages %}
+                    <li>
+                        <i class="fas fa-envelope"></i>
+                        <div>
+                            <p><strong>From:</strong> {{ message.sender.username }}</p>
+                            <p><strong>Message:</strong> {{ message.content }}</p>
+                        </div>
+                    </li>
+                    {% endfor %}
+                </ul>
+                <a href="#messages" class="see-all">See All Messages</a>
+            </section>
+            <section class="patient-analysis">
+                <h3>Patient Analysis</h3>
+                <canvas id="patient-analysis-chart"></canvas>
+            </section>
+        </main>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="{{ url_for('static', filename='jsscripts/doctors_dashboard.js') }}"></script>
+</body>
+</html>

@@ -18,7 +18,11 @@ document.addEventListener("DOMContentLoaded", function() {
         console.log('Adding click event to image:', index);
         image.addEventListener('click', () => {
             console.log('Image clicked:', index);
+            /*window.location.href = '../../../templates/news.html';*/
             window.location.href = 'https://www.webmd.com/news/default.htm';
+
+
+
         });
     });
 
@@ -48,4 +52,9 @@ document.addEventListener("DOMContentLoaded", function() {
 
     const newsLink = document.getElementById('news-link');
     newsLink.addEventListener('click', goToNewsPage);
+});
+
+document.getElementById('sale-goods').addEventListener('click', function(event) {
+    event.preventDefault();
+    alert('Please login to advertise and sell with us.');
 });

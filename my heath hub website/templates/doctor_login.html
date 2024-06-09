@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Doctor Login</title>
+    <link rel="icon" type="image/png" href="../static/images/health.jpeg">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/doctor_login.css') }}">
+</head>
+<body>
+    <div class="login-container">
+        <h1>Doctor Login</h1>
+        <form method="POST" action="{{ url_for('doctor_login') }}">
+            {{ form.hidden_tag() }}
+            <div class="input-group">
+                <label for="email">{{ form.email.label }}</label>
+                {{ form.email(size=32, id='email') }}
+            </div>
+            <div class="input-group">
+                <label for="password">{{ form.password.label }}</label>
+                <div class="password-container">
+                    {{ form.password(size=32, id='password') }}
+                    <button type="button" class="toggle-password" onclick="togglePassword()">Show</button>
+                </div>
+            </div>
+            <div class="input-group">
+                {{ form.submit(class_="login-button") }}
+            </div>
+        </form>
+        <div class="create-account">
+            <p>Don't have an account? <a href="{{ url_for('doctor_register') }}">Create Account</a></p>
+            <p><a href="{{ url_for('login') }}">Home</a></p>
+            <p><a href="{{ url_for('reset_password_request') }}">Change password</a></p>
+        </div>
+    </div>
+
+    <script>
+        function togglePassword() {
+            var passwordField = document.getElementById("password");
+            var toggleButton = document.querySelector(".toggle-password");
+            if (passwordField.type === "password") {
+                passwordField.type = "text";
+                toggleButton.textContent = "Hide";
+            } else {
+                passwordField.type = "password";
+                toggleButton.textContent = "Show";
+            }
+        }
+    </script>
+</body>
+</html>
+

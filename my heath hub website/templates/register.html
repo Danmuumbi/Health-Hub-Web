@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ title }}</title>
+    <link rel="icon" type="image/png" href="../static/images/health.jpeg">
     <link rel="stylesheet" href="{{ url_for('static', filename='styles/register.css') }}">
 </head>
 <body>
@@ -16,7 +17,7 @@
                 <li><a href="{{ url_for('register') }}">Register</a></li>
                 <li><a href="{{ url_for('contact') }}">Contact</a></li>
                 <li><a href="{{ url_for('services') }}">Services</a></li>
-                <li><a href="{{ url_for('about') }}">About</a></li>
+                <!--<li><a href="{{ url_for('about') }}">About</a></li>-->
             </ul>
         </nav>
     </header>

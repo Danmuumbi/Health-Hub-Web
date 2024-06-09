@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Today's Appointments</title>
+    <link rel="icon" type="image/png" href="../static/images/health.jpeg">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/admin_dashboard.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        .main-header, .main-footer {
+            background-color: #007bff;
+            color: white;
+            text-align: center;
+            padding: 1em 0;
+        }
+        .container {
+            margin: 2em auto;
+            width: 90%;
+            max-width: 1200px;
+            background-color: white;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        .search-section, .appointments-section {
+            padding: 2em;
+        }
+        .search-section h2, .appointments-section h2 {
+            margin-top: 0;
+        }
+        .search-section form, .appointments-section table {
+            display: flex;
+            flex-direction: column;
+        }
+        .search-section form label, .search-section form input {
+            margin: 0.5em 0;
+        }
+        .search-section form button {
+            align-self: flex-start;
+            padding: 0.5em 1em;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .search-section form button:hover {
+            background-color: #0056b3;
+        }
+        .appointments-section table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1em;
+        }
+        .appointments-section th, .appointments-section td {
+            padding: 1em;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        .appointments-section th {
+            background-color: #f8f8f8;
+        }
+        .appointments-section tr:hover {
+            background-color: #f1f1f1;
+        }
+        .actions button {
+            padding: 0.5em 1em;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .actions button:hover {
+            background-color: #218838;
+        }
+        .actions input {
+            width: 80px;
+            padding: 0.5em;
+            margin-right: 0.5em;
+        }
+        .status {
+            padding: 0.5em;
+            border-radius: 4px;
+            color: white;
+            font-weight: bold;
+        }
+        .status.pending { background-color: #ffc107; }
+        .status.approved { background-color: #28a745; }
+        .status.rejected { background-color: #dc3545; }
+    </style>
+</head>
+<body>
+    <header class="main-header">
+        <h1><i class="fas fa-calendar-check"></i> Today's Appointments</h1>
+    </header>
+
+    <div class="container">
+        <section class="search-section">
+            <h2><i class="fas fa-search"></i> Search for User</h2>
+            <form method="POST" action="{{ url_for('search_user') }}">
+                <label for="search-email">Email:</label>
+                <input type="email" id="search-email" name="email" placeholder="Enter user email">
+                <label for="search-phone">Phone Number:</label>
+                <input type="text" id="search-phone" name="phone_number" placeholder="Enter user phone number">
+                <button type="submit"><i class="fas fa-search"></i> Search</button>
+            </form>
+        </section>
+
+        <section class="appointments-section">
+            <h2><i class="fas fa-clock"></i> Pending Appointments</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Patient</th>
+                        <th>Doctor</th>
+                        <th>Service Type</th>
+                        <th>Date & Time</th>
+                        <th>Status</th>
+                        <th>Price</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for appointment in pending_appointments %}
+                    <tr>
+                        <td>{{ appointment.patient.username }}</td>
+                        <td>{{ appointment.doctor_id }}</td>
+                        <td>{{ appointment.service_type }}</td>
+                        <td>{{ appointment.date_time }}</td>
+                        <td><span class="status {{ appointment.status | lower }}">{{ appointment.status }}</span></td>
+                        <td>${{ appointment.price }}</td>
+                        <td class="actions">
+                            <form method="POST" action="{{ url_for('approves_appointment', appointment_id=appointment.appointment_id) }}">
+                                <input type="number" name="price" placeholder="Enter price" required>
+                                <button type="submit"><i class="fas fa-check"></i> Approve</button>
+                            </form>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </section>
+    </div>
+
+    <footer class="main-footer">
+        <p>&copy; 2024 Health Hub</p>
+    </footer>
+</body>
+</html>
+
+

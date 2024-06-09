@@ -1,120 +1,15 @@
-<!--<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Administrator Dashboard</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='styles/admin_dashboard.css') }}">
-</head>
-<body>
-    <header class="main-header">
-        <h1>Administrator Dashboard</h1>
-    </header>
-
-    <div class="container">
-        <section class="search-section">
-            <h2>Search for User</h2>
-            <form method="POST" action="{{ url_for('search_user') }}">
-                <label for="search-email">Email:</label>
-                <input type="email" id="search-email" name="email">
-                <label for="search-phone">Phone Number:</label>
-                <input type="text" id="search-phone" name="phone_number">
-                <button type="submit">Search</button>
-            </form>
-        </section>
-
-        <section class="users-section">
-            <h2>Registered Users</h2>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Username</th>
-                        <th>Email</th>
-                        <th>Date of Birth</th>
-                        <th>Gender</th>
-                        <th>Address</th>
-                        <th>Phone Number</th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for user in users %}
-                    <tr>
-                        <td>{{ user.username }}</td>
-                        <td>{{ user.email }}</td>
-                        <td>{{ user.date_of_birth }}</td>
-                        <td>{{ user.gender }}</td>
-                        <td>{{ user.address }}</td>
-                        <td>{{ user.phone_number }}</td>
-                        <td>
-                            <form method="POST" action="{{ url_for('remove_user', user_id=user.user_id) }}">
-                                <button type="submit">Remove</button>
-                            </form>
-                        </td>
-                    </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
-        </section>
-
-        <section class="appointments-section">
-            <h2>Pending Appointments</h2>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Patient</th>
-                        <th>Doctor</th>
-                        <th>Service Type</th>
-                        <th>Date & Time</th>
-                        <th>Status</th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for appointment in pending_appointments %}
-                    <tr>
-                        <td>{{ appointment.patient.username }}</td>
-                        <td>{{ appointment.doctor_id }}</td>
-                        <td>{{ appointment.service_type }}</td>
-                        <td>{{ appointment.date_time }}</td>
-                        <td>{{ appointment.status }}</td>
-                        <td>
-                            <form method="POST" action="{{ url_for('approve_appointment', appointment_id=appointment.appointment_id) }}">
-                                <button type="submit">Approve</button>
-                            </form>
-                            <form method="POST" action="{{ url_for('remove_appointment', appointment_id=appointment.appointment_id) }}">
-                                <button type="submit">Remove</button>
-                            </form>
-                        </td>
-                    </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
-        </section>
-
-        <section class="billing-section">
-            <h2>Billing Information</h2>
-            <p>Total Billed: {{ total_billed }}</p>
-            <p>Total Paid: {{ total_paid }}</p>
-            <p>Balance: {{ balance }}</p>
-        </section>
-    </div>
-
-    <footer class="main-footer">
-        <p>Admin Dashboard - Health Hub</p>
-    </footer>
-</body>
-</html>-->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="../static/images/health.jpeg">
     <title>Administrator Dashboard</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='styles/admin_dashboard.css') }}">
 </head>
 <body>
     <header class="main-header">
+        
         <h1>Administrator Dashboard</h1>
     </header>
 

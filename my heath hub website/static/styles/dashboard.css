@@ -1,220 +1,180 @@
 body {
-    background-image: url('your-background-image.jpg');
-    background-size: cover;
     font-family: Arial, sans-serif;
+    background-color: #f4f4f9;
     margin: 0;
     padding: 0;
-    color: #333;
-    background-color: goldenrod;
 }
-header nav ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: flex;
-    gap: 1.5rem;
-}
-nav ul li a:hover {
-    color: red;
-    text-decoration: underline;
-}
-nav ul li a {
-    color: #fff;
-    text-decoration: none;
-}
+
 header {
+    background-color: #007bff;
+    color: white;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background: linear-gradient(to right, rgb(177, 36, 36) 5cm, darkblue 5cm);
     padding: 10px 20px;
-    color: white;
 }
+
+.header-left {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+}
+
+nav ul li {
+    display: inline;
+    margin-right: 10px;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+
 .user-info {
     display: flex;
     align-items: center;
-    background-color: rgb(177, 29, 29);
-    border-radius: 25px;
-    padding: 5px 10px;
+    cursor: pointer;
 }
-.user-info img, .user-info .placeholder {
+
+.user-info img {
+    border-radius: 50%;
     width: 40px;
     height: 40px;
-    border-radius: 50%;
-    background-color: green;
     margin-right: 10px;
 }
+
 .user-info .placeholder {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    background-color: gray;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    text-align: center;
+    line-height: 40px;
     color: white;
-    font-weight: bold;
+    margin-right: 10px;
 }
+
 .news-bar {
-    width: 80%;
-    margin: 20px auto;
-    background: lightgray;
-    border-radius: 10px;
+    background-color: #ffc107;
+    color: black;
+    padding: 10px 20px;
     display: flex;
-    justify-content: center;
     align-items: center;
-    padding: 10px;
-    position: relative;
 }
-.news-bar::before, .news-bar::after {
-    content: '';
-    border-style: solid;
-    position: absolute;
-    top: 0;
-    width: 0;
-    height: 0;
-}
-.news-bar::before {
-    border-width: 20px 20px 0 0;
-    border-color: rgb(231, 146, 146) transparent transparent transparent;
-    left: -20px;
-}
-.news-bar::after {
-    border-width: 0 0 20px 20px;
-    border-color: transparent transparent rgb(224, 178, 178) transparent;
-    right: -20px;
-}
+
 .news-bar .news {
     display: flex;
-    /*background-color: aqua;*/
     align-items: center;
-}
-.news-bar .news img {
-    width: 10px;
-    height: 10px;
-    margin-right: 10px;
-    animation: twinkle 1s infinite;
-}
-@keyframes twinkle {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0; }
-}
-.image_news{
-    width: 80px;
-    height: 20px;
-    animation: twinkle 1s infinite;
     cursor: pointer;
-    display: flex;
 }
+
+.news-bar .news img {
+    width: 30px;
+    height: 30px;
+    margin-right: 10px;
+}
+
+.dashboard-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+}
+
+.overview {
+    width: 100%;
+    background-color: #ffffff;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+.overview h2 {
+    margin-top: 0;
+}
+
+.overview-boxes {
+    display: flex;
+    justify-content: space-between;
+}
+
+.overview-boxes .box {
+    background-color: #f8f9fa;
+    padding: 10px;
+    border-radius: 10px;
+    text-align: center;
+    flex: 1;
+    margin: 0 10px;
+}
+
 .boxes {
     display: flex;
     justify-content: space-around;
-    margin: 20px 0;
+    width: 100%;
+    margin-bottom: 20px;
 }
+
 .box {
-    flex: 1;
-    margin: 0 10px;
+    background-color: #ffffff;
     padding: 20px;
     border-radius: 10px;
-    color: white;
+    width: 22%;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
 }
-.box h3 {
-    margin-top: 0;
-}
-.box-appointments { background-color: green; }
-.box-attended { background-color: green; }/*rgb(171, 32, 32)*/
-.box-payments { background-color: blue; position: relative; }/*bronze*/
-.box-payments .inner-box {
-    background-color:  green;/* green;*/
-    border-radius: 10px;
-    padding: 10px;
-    margin-bottom: 10px;
-}
-.box-payments .make-payment {
-    position: absolute;
-    bottom: 10px;
-    left: 50%;
-    transform: translateX(-50%);
-    background-color: rgb(184, 13, 13);
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-}
-.medical-records {
-    background-color: darkblue;
-    color: white;
-    border-radius: 10px;
-    padding: 20px;
-    text-align: center;
-    margin: 20px auto;
-    width: 80%;
-}
-.medical-records .inner-box {
-    background-color: green;
-    border-radius: 10px;
-    padding: 10px;
-    margin: 10px 0;
-}
+
 .info-section {
     display: flex;
-    justify-content: space-around;
-    margin: 20px 0;
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 20px;
 }
+
 .info-box {
-    flex: 1;
-    background-color: lightgray;
-    border-radius: 10px;
+    background-color: #ffffff;
     padding: 20px;
-    margin: 0 10px;
-}
-.info-box .header {
-    background-color: rgb(89, 202, 89);
     border-radius: 10px;
-    padding: 10px;
-    text-align: center;
+    width: 48%;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
 }
+
+.info-box .header {
+    font-size: 18px;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
 .info-box .content {
-    padding: 10px;
+    line-height: 1.6;
 }
-.info-box .content img, .info-box .content .placeholder {
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    background-color: rgb(77, 212, 77);
-    margin-right: 10px;
-    display: inline-block;
-}
-.info-box .content .line {
-    border-bottom: 1px solid #ccc;
+
+.info-box .line {
+    border-top: 1px solid #ddd;
     margin: 10px 0;
 }
-.update-btn {
-    display: block;
-    background-color: rgb(157, 6, 6);
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    text-align: center;
-    cursor: pointer;
-    margin: 20px auto 0;
-}
+
 .centered-links {
     text-align: center;
     margin: 20px 0;
 }
+
 .centered-links a {
-    display: inline-block;
-    background-color: darkblue;
+    background-color: #007bff;
     color: white;
     padding: 10px 20px;
+    text-decoration: none;
     border-radius: 5px;
     margin: 0 10px;
-    text-decoration: none;
 }
+
 footer {
-    background-color: darkblue;
+    background-color: #007bff;
     color: white;
     text-align: center;
     padding: 10px 0;
-    margin-top: 20px;
 }
-

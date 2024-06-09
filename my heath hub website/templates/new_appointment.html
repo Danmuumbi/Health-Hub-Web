@@ -1,100 +1,9 @@
-<!--<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>New Appointment</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-        }
-
-        h1 {
-            text-align: center;
-            color: #333;
-        }
-
-        form {
-            background: #fff;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            width: 300px;
-        }
-
-        label {
-            display: block;
-            margin-bottom: 8px;
-            color: #333;
-        }
-
-        input, select, button {
-            width: 100%;
-            padding: 10px;
-            margin-bottom: 15px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            box-sizing: border-box;
-        }
-
-        button {
-            background-color: #5cb85c;
-            color: white;
-            border: none;
-            cursor: pointer;
-            font-size: 16px;
-        }
-
-        button:hover {
-            background-color:#4cae4c;
-        }
-
-        .form-group {
-            margin-bottom: 15px;
-        }
-
-        .container {
-            max-width: 400px;
-            margin: auto;
-        }
-    </style>
-</head>
-<body>
-    <div class="container">
-        <h1>Book New Appointment</h1>
-        <form action="{{ url_for('add_appointment') }}" method="POST">
-            {{ form.hidden_tag() }}
-            <div class="form-group">
-                <label for="service_type">Service Type:</label>
-                {{ form.service_type() }}
-            </div>
-            <div class="form-group">
-                <label for="date_time">Date and Time:</label>
-                <input type="datetime-local" id="date_time" name="date_time" value="{{ form.date_time.data }}" required>
-            </div>
-            <div class="form-group">
-                <label for="doctor_id">Doctor ID:</label>
-                {{ form.doctor_id() }}
-            </div>
-            <div class="form-group">
-                {{ form.submit(class="btn btn-primary") }}
-            </div>
-        </form>
-    </div>
-</body>
-</html>
--->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>New Appointment</title>
+    <link rel="icon" type="image/png" href="../static/images/health.jpeg">
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -204,6 +113,8 @@
             </div>
             <div class="form-group">
                 {{ form.submit(class="btn btn-primary") }}
+                <!--<a href="/">home</a>-->
+                <a href="/dashboard">Back</a>
             </div>
         </form>
     </div>

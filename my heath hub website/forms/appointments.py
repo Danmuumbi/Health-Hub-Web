@@ -1,13 +1,3 @@
-"""from flask_wtf import FlaskForm
-from wtforms import StringField, DateTimeField, SubmitField, IntegerField
-from wtforms.validators import DataRequired
-
-class AppointmentForm(FlaskForm):
-    service_type = StringField('Service Type', validators=[DataRequired()])
-    date_time = DateTimeField('Date and Time', format='%Y-%m-%d %H:%M:%S', validators=[DataRequired()])
-    doctor_id = IntegerField('Doctor ID', validators=[DataRequired()])  # Adjust as needed
-    submit = SubmitField('Book Appointment')
-"""
 from flask_wtf import FlaskForm
 from wtforms import StringField, DateTimeField, SubmitField, IntegerField
 from wtforms.validators import DataRequired, ValidationError

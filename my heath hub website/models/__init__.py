@@ -8,3 +8,4 @@ from .appointment import Appointment
 from .department import Department
 from .payment import Payment
 from .market_place import Order,Product,OrderItem
+from .doctor_models import Doctor,DoctorAppointment

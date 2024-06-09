@@ -154,7 +154,7 @@ body {
     margin: 10px;
 }
 
-/* Footer Styles */
+/*Footer Styles */
 .footer {
     background-color: rgb(61, 61, 70);
     color: white;
@@ -163,14 +163,22 @@ body {
 }
 
 .footer-links a {
-    color: red;/*white;*/
+    color: green;
     text-decoration: none;
     margin: 0 10px;
 }
 
 .footer-links a:hover {
     text-decoration: underline;
+    color: #f9f9f9;
 }
+
+.footer-section.links a {
+    color: darkblue;
+    
+}
+
+
 .p1{
     font-size: 60px;
     color: aqua;
@@ -190,6 +198,11 @@ body {
 .login-button:hover {
     background-color: #07590793;
 }
+
+.footer-section.links a:hover {
+    color: red;
+}
+
 .hire {
     font-family: cursive;
     font-style: oblique 10deg;

@@ -2,11 +2,11 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: green;/*#CD7F32;*/
+    background-color: whitesmoke;/*#CD7F32;*/
 }
 
 header {
-    background-color: #333;
+    background-color: rgb(227, 68, 68);
     color: #fff;
     padding: 10px;
     text-align: center;
@@ -28,7 +28,7 @@ header .order-instruction-link {
     left: 0;
     width: 100%;
     height: 50%;
-    background-color: rgba(250, 239, 239, 0.8);
+    background-color: green;
     color: #fff;
     display: flex;
     align-items: center;
@@ -40,7 +40,7 @@ header .order-instruction-link {
     display: flex;
     width: 90%;
     height: 90%;
-    background-color: #281a1a;
+    background-color: #e5d7d7;
     color: #000;
 }
 
@@ -51,7 +51,7 @@ header .order-instruction-link {
 
 .instruction-content .instruction-image img {
     width: 100%;
-    height: 20px;/*auto;*/
+    height: 100%;/*auto;50px*/
 }
 
 .goods-list {
@@ -76,11 +76,11 @@ header .order-instruction-link {
 
 .good-item img {
     width: 100%;
-    height: 40%; /*auto;*/
+    height: 40%; /*auto;40%*/
 }
 
 .good-details {
     text-align: center;
-    padding: 10px;
+    padding: 5px;/*10px;*/
 }
 

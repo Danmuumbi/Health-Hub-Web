@@ -1,62 +1,17 @@
-<!--
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Goods for Sale</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" type="image/png" href="../static/images/health.jpeg">
     <link rel="stylesheet" href="{{ url_for('static', filename='styles/public_products.css') }}">
 </head>
 <body>
     <header>
         <h1>Goods for Sale</h1>
-        <a href="#" class="order-instruction-link">See Ordering Instruction</a>
-    </header>
-    
-    <div class="instruction-popup">
-        <div class="instruction-content">
-            <div class="instructions">
-                <h2>How to Book an Order</h2>
-                <p>Follow these steps to book your order...</p>
-   
-            </div>
-            <div class="instruction-image">
-                <img src="provided_photo.jpg" alt="Instruction Image">
-            </div>
-        </div>
-    </div>
-
-    <ul class="goods-list">
-    {% for good in goods %}
-        <li class="good-item">
-            <img src="http://localhost:5001/static/uploads/{{ good.image_file }}" alt="{{ good.name }}">
-            <div class="good-details">
-                <h2>{{ good.name }}</h2>
-                <p>{{ good.description }}</p>
-                <p>Price: ${{ good.price }}</p>
-                <p>Email: {{ good.email }}</p>
-            </div>
-        </li>
-    {% endfor %}
-    </ul>
-
-    <script src="script.js"></script>
-    <script src="{{ url_for('static', filename='jsscripts/public_products.js') }}"></script>
-</body>
-</html>
--->
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Goods for Sale</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='styles/public_products.css') }}">
-</head>
-<body>
-    <header>
-        <h1>Goods for Sale</h1>
+        <a href="{{ url_for('home') }}">Home</a>
         <a href="#" class="order-instruction-link">See Ordering Instruction</a>
     </header>
     
@@ -68,7 +23,7 @@
                 <!-- Add more instructions as needed -->
             </div>
             <div class="instruction-image">
-                <img src="{{ url_for('static', filename='/images/backgrud.jpg') }}" alt="Instruction Image">
+                <img src="{{ url_for('static', filename='/images/sellers.png') }}" alt="Instruction Image">
             </div>
         </div>
     </div>

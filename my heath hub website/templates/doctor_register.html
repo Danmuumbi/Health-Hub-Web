@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doctor Register</title>
+    <link rel="icon" type="image/png" href="../static/images/health.jpeg">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/doctor_register.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Doctor Registration</h1>
+
+        <!-- Flash messages -->
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                <div class="flash-messages">
+                    {% for category, message in messages %}
+                        <div class="alert alert-{{ category }}">{{ message }}</div>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        {% endwith %}
+
+        <form method="POST" action="{{ url_for('doctor_register') }}" enctype="multipart/form-data">
+            {{ form.hidden_tag() }}
+            <div class="form-group">
+                {{ form.username.label }} 
+                {{ form.username(class="form-control") }}
+                {% if form.username.errors %}
+                    <div class="form-error">{{ form.username.errors[0] }}</div>
+                {% endif %}
+            </div>
+            <div class="form-group">
+                {{ form.email.label }} 
+                {{ form.email(class="form-control") }}
+                {% if form.email.errors %}
+                    <div class="form-error">{{ form.email.errors[0] }}</div>
+                {% endif %}
+            </div>
+            <div class="form-group">
+                {{ form.password.label }} 
+                <div class="password-container">
+                    {{ form.password(class="form-control", id="password") }}
+                    <span class="toggle-password" onclick="togglePassword()">Show</span>
+                </div>
+                {% if form.password.errors %}
+                    <div class="form-error">{{ form.password.errors[0] }}</div>
+                {% endif %}
+            </div>
+            <div class="form-group">
+                {{ form.confirm_password.label }} 
+                {{ form.confirm_password(class="form-control", id="confirm_password") }}
+                {% if form.confirm_password.errors %}
+                    <div class="form-error">{{ form.confirm_password.errors[0] }}</div>
+                {% endif %}
+            </div>
+            <div class="form-group">
+                {{ form.date_of_birth.label }} 
+                {{ form.date_of_birth(class="form-control") }}
+                {% if form.date_of_birth.errors %}
+                    <div class="form-error">{{ form.date_of_birth.errors[0] }}</div>
+                {% endif %}
+            </div>
+            <div class="form-group">
+                {{ form.gender.label }} 
+                {{ form.gender(class="form-control") }}
+                {% if form.gender.errors %}
+                    <div class="form-error">{{ form.gender.errors[0] }}</div>
+                {% endif %}
+            </div>
+            <div class="form-group">
+                {{ form.address.label }} 
+                {{ form.address(class="form-control") }}
+                {% if form.address.errors %}
+                    <div class="form-error">{{ form.address.errors[0] }}</div>
+                {% endif %}
+            </div>
+            <div class="form-group">
+                {{ form.phone_number.label }} 
+                {{ form.phone_number(class="form-control") }}
+                {% if form.phone_number.errors %}
+                    <div class="form-error">{{ form.phone_number.errors[0] }}</div>
+                {% endif %}
+            </div>
+            <div class="form-group">
+                {{ form.profile_picture.label }} 
+                {{ form.profile_picture(class="form-control-file") }}
+                {% if form.profile_picture.errors %}
+                    <div class="form-error">{{ form.profile_picture.errors[0] }}</div>
+                {% endif %}
+            </div>
+            <div class="form-group">
+                {{ form.submit(class="btn btn-primary") }}
+            </div>
+        </form>
+        <p><a href="{{ url_for('login') }}">Home</a></p>
+    </div>
+    <script src="{{ url_for('static', filename='jsscripts/doctor_register.js') }}"></script>
+    <script>
+        function togglePassword() {
+            var passwordField = document.getElementById('password');
+            var togglePassword = document.querySelector('.toggle-password');
+            if (passwordField.type === 'password') {
+                passwordField.type = 'text';
+                togglePassword.textContent = 'Hide';
+            } else {
+                passwordField.type = 'password';
+                togglePassword.textContent = 'Show';
+            }
+        }
+    </script>
+</body>
+</html>

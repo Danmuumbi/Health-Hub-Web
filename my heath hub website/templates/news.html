@@ -2,97 +2,224 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Health Hub News</title>
+    <title>Health Hub</title>
+    <link rel="icon" type="image/png" href="../static/images/health.jpeg">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
-        body {
-            font-family: Arial, sans-serif;
+        body, html {
             margin: 0;
             padding: 0;
-            background-color: #f4f4f4;
+            font-family: Arial, sans-serif;
+            background-color: lightskyblue;
         }
+
         header {
-            background-color: #4CAF50;
+            background: #4CAF50;
             color: white;
-            padding: 10px 0;
+            padding: 20px 0;
             text-align: center;
         }
+
         nav {
             display: flex;
             justify-content: center;
-            background-color: #333;
+            background: #333;
+            padding: 10px;
         }
+
         nav a {
             color: white;
             padding: 14px 20px;
             text-decoration: none;
             text-align: center;
         }
+
         nav a:hover {
-            background-color: #ddd;
-            color: black;
+            background: #575757;
         }
+
+        .hero {
+            background: url('../static/images/hub.avif') no-repeat center center/cover;
+            height: 500px;
+            color: green;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 0 20px;
+        }
+
+        .hero h1 {
+            font-size: 4em;
+            margin: 0;
+        }
+
         .container {
-            padding: 20px;
+            padding: 50px 20px;
         }
-        .news-item {
-            background-color: white;
+
+        .services, .blog, .testimonials, .contact {
+            margin-bottom: 50px;
+        }
+
+        .section-title {
+            text-align: center;
             margin-bottom: 20px;
-            padding: 20px;
-            border-radius: 5px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            font-size: 2em;
         }
-        .news-item h2 {
+
+        .service-item, .blog-item, .testimonial-item {
+            border: 1px solid #ccc;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 10px;
+            transition: transform 0.2s;
+            background-color: ghostwhite;
+        }
+
+        .service-item:hover, .blog-item:hover, .testimonial-item:hover {
+            transform: scale(1.05);
+        }
+
+        .service-item h3, .blog-item h3, .testimonial-item h3 {
             margin-top: 0;
         }
-        .news-item img {
-            max-width: 100%;
-            height: auto;
+
+        .contact form {
+            display: flex;
+            flex-direction: column;
+            max-width: 600px;
+            margin: auto;
+        }
+
+        .contact label, .contact input, .contact textarea, .contact button {
+            margin-bottom: 15px;
+        }
+
+        .contact input, .contact textarea {
+            padding: 10px;
+            width: 100%;
+            border: 1px solid #ccc;
             border-radius: 5px;
         }
-        .news-item p {
-            color: #555;
+
+        .contact button {
+            padding: 10px;
+            border: none;
+            background: #4CAF50;
+            color: white;
+            cursor: pointer;
+            border-radius: 5px;
         }
+
+        .contact button:hover {
+            background: #45a049;
+        }
+
         footer {
-            background-color: #333;
+            background: #333;
             color: white;
             text-align: center;
             padding: 10px 0;
-            position: fixed;
-            bottom: 0;
-            width: 100%;
         }
     </style>
 </head>
 <body>
-    <header>
-        <h1>Health Hub News</h1>
-    </header>
-    <nav>
-        <a href="#home">Home</a>
-        <a href="#about">About</a>
-        <a href="#news">News</a>
-        <a href="#contact">Contact</a>
-    </nav>
-    <div class="container">
-        <div class="news-item">
-            <h2>Health Hub Expands Services to Include Mental Health Support</h2>
-            <img src="news1.jpg" alt="Mental Health Support">
-            <p>Our Health Hub is now offering comprehensive mental health services. These services are aimed at providing support for individuals facing various mental health challenges.</p>
-        </div>
-        <div class="news-item">
-            <h2>New Wellness Programs Launched</h2>
-            <img src="news2.jpg" alt="Wellness Programs">
-            <p>We are excited to announce the launch of our new wellness programs, designed to promote overall health and well-being through personalized plans and support.</p>
-        </div>
-        <div class="news-item">
-            <h2>Free Health Screenings Available</h2>
-            <img src="news3.jpg" alt="Health Screenings">
-            <p>Join us for our free health screenings available throughout the month. These screenings are part of our commitment to preventive health care.</p>
-        </div>
+
+<header>
+    <h1>Welcome to Health Hub</h1>
+</header>
+
+<nav>
+    <a href="#services">Services</a>
+    <a href="#blog">Blog</a>
+    <a href="#testimonials">Testimonials</a>
+    <a href="#contact">Contact</a>
+    <a href="/">Home</a>
+</nav>
+
+<div class="hero">
+    <div>
+        <h1>Your Journey to Better Health Starts Here</h1>
+        <p>Explore our services, read our blog, and join a community of health enthusiasts.</p>
     </div>
-    <footer>
-        <p>&copy; 2024 Health Hub. All rights reserved.</p>
-    </footer>
+</div>
+
+<div class="container">
+
+    <section id="services" class="services">
+        <div class="section-title">Our Services</div>
+        <div class="service-item">
+            <h3>Nutrition Counseling</h3>
+            <p>Get personalized nutrition advice from our expert dietitians to help you achieve your health goals.</p>
+        </div>
+        <div class="service-item">
+            <h3>Fitness Programs</h3>
+            <p>Join our tailored fitness programs designed to suit all levels of experience and fitness.</p>
+        </div>
+        <div class="service-item">
+            <h3>Mental Health Support</h3>
+            <p>Access resources and support from qualified professionals to improve your mental well-being.</p>
+        </div>
+    </section>
+
+    <section id="blog" class="blog">
+        <div class="section-title">Latest Blog Posts</div>
+        <div class="blog-item">
+            <h3>10 Tips for a Healthier Lifestyle</h3>
+            <p>Discover simple and effective tips to enhance your everyday health and well-being.</p>
+        </div>
+        <div class="blog-item">
+            <h3>The Importance of Regular Exercise</h3>
+            <p>Learn about the numerous benefits of regular physical activity and how to incorporate it into your life.</p>
+        </div>
+        <div class="blog-item">
+            <h3>Mental Health Awareness</h3>
+            <p>Understand the importance of mental health and find out how to take care of your mind.</p>
+        </div>
+    </section>
+
+    <section id="testimonials" class="testimonials">
+        <div class="section-title">What Our Clients Say</div>
+        <div class="testimonial-item">
+            <h3>Felix Smith</h3>
+            <p>"Health Hub has transformed my life! The nutrition counseling helped me lose 20 pounds and I feel better than ever."</p>
+        </div>
+        <div class="testimonial-item">
+            <h3>Paul Musk</h3>
+            <p>"The fitness programs are amazing. I've gained so much strength and confidence since joining Health Hub."</p>
+        </div>
+        <div class="testimonial-item">
+            <h3>Monicah Paul</h3>
+            <p>"The mental health support at Health Hub is outstanding. I feel heard and supported every step of the way."</p>
+        </div>
+    </section>
+
+    <section id="contact" class="contact">
+        <div class="section-title">Get in Touch</div>
+        <form id="contact-form">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required>
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+            <label for="message">Message:</label>
+            <textarea id="message" name="message" rows="5" required></textarea>
+            <button type="submit">Send Message</button>
+        </form>
+    </section>
+
+</div>
+
+<footer>
+    <p>&copy; 2024 Health Hub. All rights reserved.</p>
+</footer>
+
+<script>
+    document.getElementById('contact-form').addEventListener('submit', function(event) {
+        event.preventDefault();
+        alert('Thank you for your message! We will get back to you shortly.');
+    });
+</script>
+
 </body>
 </html>

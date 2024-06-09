@@ -2,7 +2,8 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Dashboard</title>
+    <title>Health Hub Dashboard</title>
+    <link rel="icon" type="image/png" href="../static/images/health.jpeg">
     <link rel="stylesheet" href="{{ url_for('static', filename='styles/dashboard.css') }}">
 </head>
 <body>
@@ -11,8 +12,8 @@
         <nav>
             <ul>
                 <li class="links"><a href="/">Home</a></li>
-                <li class="links"><a href="/about">About</a></li>
-                <li class="links"><a href="/contact">contact</a></li>
+                <!--<li class="links"><a href="/about">About</a></li>-->
+                <li class="links"><a href="/contact">Contact</a></li>
                 <li class="links"><a href="/services">Services</a></li>
             </ul>
         </nav>
@@ -27,104 +28,117 @@
     </header>
 
     <div class="news-bar">
-        <div class="news" data-url="{{ url_for('news_page') }}" onclick="navigateTo(this.dataset.url)"></div>
-            
+        <div class="news" data-url="{{ url_for('news_page') }}" onclick="navigateTo(this.dataset.url)">
             <a href="https://www.health.go.ke/" target="_blank">
                 <img class="image_news" src="{{ url_for('static', filename='images/star.jpeg') }}" alt="News Icon">
             </a>
-            
             <span>News</span>
         </div>
     </div>
 
-    <div class="boxes">
-        <div class="box box-appointments">
-            <h3>Booked Appointments</h3>
-            <ul>
-                {% for appointment in appointments %}
-                    {% if appointment.date_time > now %}
-                        <li>{{ appointment.service_type }}</li>
-                        <li>{{ appointment.date_time }}</li>
+    <div class="dashboard-container">
+        <div class="overview">
+            <h2>Overview</h2>
+            <div class="overview-boxes">
+                <div class="box">
+                    <h3>Upcoming Appointments</h3>
+                    <p>{{ appointments|selectattr('date_time', '>', now)|list|length }}</p>
+                </div>
+                <div class="box">
+                    <h3>Recent Activities</h3>
+                    <ul>
+                        <li>Last Login: {{ user.last_login }}</li>
+                        <li>Recent Tests: Blood Test, X-ray</li>
+                        <li>Messages: 3 new</li>
+                    </ul>
+                </div>
+                <div class="box">
+                    <h3>Health Tips</h3>
+                    <ul>
+                        <li>Stay hydrated</li>
+                        <li>Exercise regularly</li>
+                        <li>Eat balanced meals</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="boxes">
+            <div class="box box-appointments">
+                <h3>Booked Appointments</h3>
+                <ul>
+                    {% for appointment in appointments %}
+                        {% if appointment.date_time > now %}
+                            <li>{{ appointment.service_type }} - {{ appointment.date_time }}</li>
+                        {% endif %}
+                    {% endfor %}
+                </ul>
+            </div>
+            <div class="box box-health-status">
+                <h3>Health Status</h3>
+                <ul>
+                    <li>Blood Pressure: 120/80 mmHg</li>
+                    <li>Heart Rate: 72 bpm</li>
+                    <li>Blood Sugar: Normal</li>
+                </ul>
+            </div>
+            <div class="box box-prescriptions">
+                <h3>Prescription Refills</h3>
+                <ul>
+                    <li>Aspirin - Next Refill: {{ "2024-07-10" }}</li>
+                    <li>Metformin - Next Refill: {{ "2024-07-15" }}</li>
+                </ul>
+            </div>
+            <div class="box box-health-tips">
+                <h3>General Health Tips</h3>
+                <ul>
+                    <li>Take regular breaks</li>
+                    <li>Get enough sleep</li>
+                    <li>Maintain a healthy weight</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="info-section">
+            <div class="info-box">
+                <div class="header">Basic Information</div>
+                <div class="content">
+                    {% if user.photo %}
+                        <img src="{{ user.photo }}" alt="User Photo">
+                    {% else %}
+                        <div class="placeholder">{{ user.username[0] }}</div>
                     {% endif %}
-                {% endfor %}
-            </ul>
-            
-        </div>
-        <div class="box box-attended">
-            <h3>Attended Appointments</h3>
-            <p>{{ attended_appointments|length }}</p>
-            <p>Total Price: {{ total_price }}</p>
-        </div>
-        <div class="box box-payments">
-            <h3>Payments</h3>
-            <div class="inner-box">
-                <p>Total Billed: {{ total_billed }}</p>
-                <p>Total Paid: {{ total_paid }}</p>
-                <p>Balance: {{ balance }}</p>
+                    <p>Name: {{ user.name }}</p>
+                    <div class="line"></div>
+                    <p>Gender: {{ user.gender }}</p>
+                    <div class="line"></div>
+                    <p>ID Number: {{ user.id_number }}</p>
+                    <div class="line"></div>
+                    <p>Date of Birth: {{ user.date_of_birth }}</p>
+                </div>
             </div>
-            <hr>
-            <!--<button class="make-payment" onclick="navigateTo('{{ url_for('add_payment') }}')">Make Payment</button>
-            <button class="make-payment" onclick='navigateTo({{ url_for("add_payment")|tojson|safe }})'>Make Payment</button>-->
-            <!--<button class="make-payment" data-url="{{ url_for('add_payment')|tojson|safe }}" onclick="navigateTo(this.dataset.url)">Make Payment</button>-->
-            <a class="make-payment" href="{{ url_for('add_payment') }}">Make Payment</a>
-        </div>
-    </div>
-
-    <div class="medical-records">
-        <h3>Medical Records</h3>
-        <div class="inner-box">
-            <p>Medical History: {{ medical_records.medical_history }}</p>
-            <p>Immunizations: {{ medical_records.immunizations }}</p>
-            <p>Vaccination Record: {{ medical_records.vaccination_record }}</p>
-        </div>
-        <div class="inner-box">
-            <p>Medications: {{ medical_records.medications }}</p>
-            <p>Lab Results: {{ medical_records.lab_results }}</p>
-            <p>Allergies: {{ medical_records.allergies }}</p>
-        </div>
-    </div>
-
-    <div class="info-section">
-        <div class="info-box">
-            <div class="header">Basic Information</div>
-            <div class="content">
-                {% if user.photo %}
-                    <img src="{{ user.photo }}" alt="User Photo">
-                {% else %}
-                    <div class="placeholder">{{ user.username[0] }}</div>
-                {% endif %}
-                <p>Name: {{ user.name }}</p>
-                <div class="line"></div>
-                <p>Gender: {{ user.gender }}</p>
-                <div class="line"></div>
-                <p>ID Number: {{ user.id_number }}</p>
-                <div class="line"></div>
-                <p>Date of Birth: {{ user.date_of_birth }}</p>
-            </div>
-            <!--<button class="update-btn" onclick="navigateTo('{{ url_for('update_info') }}')">Update Information</button>-->
-        </div>
-        <div class="info-box">
-            <div class="header">Contact Information</div>
-            <div class="content">
-                <p>Phone Number: {{ user.phone_number }}</p>
-                <div class="line"></div>
-                <p>Email Address: {{ user.email }}</p>
-                <div class="line"></div>
-                <p>Address: {{ user.address }}</p>
+            <div class="info-box">
+                <div class="header">Contact Information</div>
+                <div class="content">
+                    <p>Phone Number: {{ user.phone_number }}</p>
+                    <div class="line"></div>
+                    <p>Email Address: {{ user.email }}</p>
+                    <div class="line"></div>
+                    <p>Address: {{ user.address }}</p>
+                </div>
             </div>
         </div>
-    </div>
 
-    <div class="centered-links">
-        <a href="{{ url_for('add_appointment') }}">Book Appointment</a>
-        <a href="{{ url_for('add_payment') }}">Make Payment</a><!--changed for debugging-->
+        <div class="centered-links">
+            <a href="{{ url_for('add_appointment') }}">Book Appointment</a>
+            <a href="http://127.0.0.1:5001/index" target="_blank">Sale Goods</a>
+        </div>
     </div>
 
     <footer>
-        &copy; 2024 health-hub. All rights reserved | Design by Daniel Muumbi.
+        &copy; 2024 Health Hub. All rights reserved | Design by Daniel Muumbi.
     </footer>
 
-   <!--<script src="scripts.js"></script>-->
-   <script src="{{ url_for('static', filename='jsscripts/dashboard.js') }}"></script>
+    <script src="{{ url_for('static', filename='jsscripts/dashboard.js') }}"></script>
 </body>
 </html>

@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="../static/images/health.jpeg">
     <title>{{ title }}</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='styles/login.css') }}">
 </head>
@@ -16,7 +17,7 @@
                 <li><a href="{{ url_for('register') }}">Register</a></li>
                 <li><a href="{{ url_for('contact') }}">Contact</a></li>
                 <li><a href="{{ url_for('services') }}">Services</a></li>
-                <li><a href="{{ url_for('about') }}">About</a></li>
+                <!--<li><a href="{{ url_for('about') }}">About</a></li>-->
             </ul>
         </nav>
     </header>
@@ -44,6 +45,7 @@
                     <a class="register" href="{{ url_for('reset_password_request') }}">Request a new password</a>
                     <p class="create">Don't have an account?</p>
                     <a class="register" href="{{ url_for('register') }}">Register</a>
+                    <a class="register" href="{{ url_for('doctor_login') }}">Login as a Doctor</a>
                 </div>
             </form>
         </div>
