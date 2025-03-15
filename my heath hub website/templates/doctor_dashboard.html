@@ -39,16 +39,18 @@
             <section class="stats">
                 <div class="box">
                     <i class="fas fa-user-md"></i>
+                    
                     <div>
-                        <h3>{{ total_patients }}</h3>
+                        <h3>{{ approved_appointments_count }}</h3>
                         <p>Patients</p>
                     </div>
                 </div>
                 <div class="box">
                     <i class="fas fa-calendar-check"></i>
                     <div>
-                        <!--<h3>{{ todays_appointments|length }}</h3>-->
-                        <p>{{ appointments|selectattr('date_time', '>', now)|list|length }}</p>
+
+                        
+                        <p>{{ approved_appointments|selectattr('date_time', '>', now)|list|length }}</p>
                         <p>Today's Appointments</p>
                     </div>
                 </div>
@@ -68,7 +70,7 @@
                 </div>
             </section>
             <section class="appointments-today">
-                <h3>Today's Appointments</h3>
+                <h3>My Appointments</h3>
                 <table>
                     <thead>
                         <tr>
@@ -79,7 +81,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        {% for appointment in todays_appointments %}
+                        {% for appointment in today_appointments %}
                         <tr>
                             <td>{{ appointment.date_time.strftime('%H:%M') }}</td>
                             <td>{{ appointment.patient.username }}</td>
@@ -89,11 +91,10 @@
                         {% endfor %}
                     </tbody>
                 </table>
-               
-                <a href="{{ url_for('todays_appointments') }}" class="see-all">See All Appointments</a>
+                <a href="{{ url_for('display_appointments') }}" class="see-all">See All Appointments</a>
             </section>
             <section class="recent-messages">
-                <h3>Recent Messages</h3>
+                <h3>Appointment Requests</h3>
                 <ul>
                     {% for message in recent_messages %}
                     <li>
@@ -105,13 +106,19 @@
                     </li>
                     {% endfor %}
                 </ul>
-                <a href="#messages" class="see-all">See All Messages</a>
+                <!--<a href="#messages" class="see-all">See All Messages</a>-->
+                <a href="{{ url_for('todays_appointments') }}" class="see-all">See All Appointments Requests</a>
             </section>
             <section class="patient-analysis">
                 <h3>Patient Analysis</h3>
                 <canvas id="patient-analysis-chart"></canvas>
             </section>
         </main>
+        
+        
+
+
+
     </div>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="{{ url_for('static', filename='jsscripts/doctors_dashboard.js') }}"></script>

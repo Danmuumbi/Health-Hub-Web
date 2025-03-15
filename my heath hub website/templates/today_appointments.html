@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -119,31 +120,36 @@
             <table>
                 <thead>
                     <tr>
-                        <th>Patient</th>
+                        <th>Name</th>
                         <th>Doctor</th>
                         <th>Service Type</th>
                         <th>Date & Time</th>
-                        <th>Status</th>
-                        <th>Price</th>
+                        <th>Attendee Email</th>
+                        <th>Appointment Status</th>
+                        <th>Enter Price</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody>
                     {% for appointment in pending_appointments %}
+                    {% if appointment.date_time > now %}
                     <tr>
                         <td>{{ appointment.patient.username }}</td>
                         <td>{{ appointment.doctor_id }}</td>
                         <td>{{ appointment.service_type }}</td>
                         <td>{{ appointment.date_time }}</td>
+                        <td>{{ appointment.patient.email }}</td>
                         <td><span class="status {{ appointment.status | lower }}">{{ appointment.status }}</span></td>
                         <td>${{ appointment.price }}</td>
                         <td class="actions">
                             <form method="POST" action="{{ url_for('approves_appointment', appointment_id=appointment.appointment_id) }}">
+                                <input type="hidden" name="appointment_id" value="{{ appointment.appointment_id }}">
                                 <input type="number" name="price" placeholder="Enter price" required>
                                 <button type="submit"><i class="fas fa-check"></i> Approve</button>
                             </form>
                         </td>
                     </tr>
+                    {% endif %}
                     {% endfor %}
                 </tbody>
             </table>
@@ -155,5 +161,4 @@
     </footer>
 </body>
 </html>
-
 

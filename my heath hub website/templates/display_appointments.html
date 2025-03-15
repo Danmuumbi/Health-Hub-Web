@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="../static/images/health.jpeg">
+    <title>Health Hub - Appointments</title>
+    
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+   
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+    <style>
+        body {
+            background-color: #f8f9fa;
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            margin-top: 50px;
+        }
+        .table thead th {
+            background-color: #007bff;
+            color: white;
+        }
+        .status {
+            font-weight: bold;
+        }
+        .status.approved {
+            color: green;
+        }
+        .status.pending {
+            color: orange;
+        }
+        .actions button {
+            background-color: #28a745;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+        }
+        .actions button:hover {
+            background-color: #218838;
+        }
+        .section-title {
+            margin-top: 30px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .card {
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border: none;
+            border-radius: 10px;
+            overflow: hidden;
+            transition: transform 0.3s;
+        }
+        .card:hover {
+            transform: translateY(-10px);
+        }
+        .card-header {
+            background-color: #007bff;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        .card-body {
+            padding: 20px;
+        }
+        .card-body h3 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+        .card-body p {
+            cursor: pointer;
+            font-size: 1.2rem;
+            color: #007bff;
+        }
+        .card-body p:hover {
+            text-decoration: underline;
+        }
+        .header-title {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .header-subtitle {
+            font-size: 1.2rem;
+            color: #6c757d;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="row mb-4">
+            <div class="col-md-12 text-center">
+                <h1 class="header-title">Aprroved Appointments </h1>
+               
+            </div>
+        </div>
+        <div class="row mb-4">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <i class="fas fa-user-md fa-3x"></i>
+                    </div>
+                    <div class="card-body text-center">
+                        <h3>{{ approved_appointments_count }}</h3>
+                        <p onclick="display_appointments()">Patients</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="approved-appointments-section" class="row section-title">
+            <div class="col-md-12">
+                <h2>Approved Appointments</h2>
+            </div>
+        </div>
+        <div id="approved-appointments" class="row">
+            <div class="col-md-12">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>Patient Username</th>
+                            <th>Doctor ID</th>
+                            <th>Service Type</th>
+                            <th>Appointment Date</th>
+                            <th>Patient Email</th>
+                            <th>Status</th>
+                            <th>Price</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for appointment in approved_appointments %}
+                        <tr>
+                            <td>{{ appointment.patient.username }}</td>
+                            <td>{{ appointment.doctor_id }}</td>
+                            <td>{{ appointment.service_type }}</td>
+                            <td>{{ appointment.date_time }}</td>
+                            <td>{{ appointment.patient.email }}</td>
+                            <td><span class="status approved">{{ appointment.status }}</span></td>
+                            <td>${{ appointment.price }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        function display_appointments() {
+            // Show the approved appointments section
+            document.getElementById('approved-appointments-section').style.display = 'block';
+            document.getElementById('approved-appointments').style.display = 'block';
+        }
+        // Initially hide the approved appointments section
+        document.getElementById('approved-appointments-section').style.display = 'none';
+        document.getElementById('approved-appointments').style.display = 'none';
+    </script>
+</body>
+</html>
+

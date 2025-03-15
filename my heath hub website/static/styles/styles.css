@@ -7,7 +7,7 @@ body {
 }
 
 .header {
-    background-color: darkblue;
+    background-color: blue;
     color: white;
     padding: 10px;
     display: flex;
@@ -153,6 +153,7 @@ body {
     height: 100px;
     margin: 10px;
 }
+
 
 /*Footer Styles */
 .footer {

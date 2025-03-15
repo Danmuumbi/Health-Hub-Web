@@ -443,7 +443,6 @@ def public_products():
 
 """ Doctors Information """
 
-# Updated load_user function with role check
 @login_manager.user_loader
 def load_user(user_id):
     if session.get('role') == 'doctor':
@@ -504,8 +503,6 @@ def doctor_register():
     return render_template('doctor_register.html', title='Doctor Register', form=form)
 
 
-
-
 @app.route('/doctor_dashboard')
 @login_required
 def doctor_dashboard():
@@ -527,7 +524,6 @@ def doctor_dashboard():
     today_end = today_start + timedelta(days=1)
     today_appointments = [appt for appt in appointments if today_start <= appt.date_time < today_end]
     
-    # Organize appointments by hour for the timeline
     appointments_by_hour = {}
     for appointment in appointments:
         hour = appointment.date_time.hour
@@ -560,7 +556,7 @@ def todays_appointments():
         Appointment.status == 'Pending'
     ).all()
 
-    return render_template('today_appointments.html', pending_appointments=pending_appointments)
+    return render_template('today_appointments.html', pending_appointments=pending_appointments, now=now)
 
 
 @app.route('/approves_appointment', methods=['POST'])
@@ -568,15 +564,35 @@ def todays_appointments():
 def approves_appointment():
     appointment_id = request.form.get('appointment_id')
     price = request.form.get('price')
+    now = datetime.now()
     
     appointment = Appointment.query.get(appointment_id)
     if appointment:
         appointment.status = 'Approved'
         appointment.price = price
         db.session.commit()
+        now=now
+        
     
-    # Redirect to the route displaying today's appointments
     return redirect(url_for('doctor_dashboard'))
+
+
+@app.route('/display_appointments')
+@login_required
+def display_appointments():
+    now = datetime.now()
+    pending_appointments = Appointment.query.filter(Appointment.status != 'Approved', Appointment.date_time > now).all()
+    approved_appointments = Appointment.query.filter(Appointment.status == 'Approved', Appointment.date_time > now).all()
+    approved_appointments_count = len(approved_appointments)
+
+    return render_template('display_appointments.html', 
+                           pending_appointments=pending_appointments, 
+                           approved_appointments=approved_appointments, 
+                           approved_appointments_count=approved_appointments_count,now=now)
+
+
+
+
 
 
 if __name__ == '__main__':
